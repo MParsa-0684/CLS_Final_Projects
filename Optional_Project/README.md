@@ -1,4 +1,6 @@
-# Optional Project 6 - Simple MIPS Simulator
+# Optional Project 6 - Simple MIPS Simulator 🧠
+
+## 1. Title and Intro 🚀
 
 This project implements a minimal MIPS32 simulator that supports:
 - R-type: `ADD`, `SUB`, `SLT`
@@ -7,96 +9,54 @@ This project implements a minimal MIPS32 simulator that supports:
 
 The simulator loads 32-bit machine codes from a hex input file, places them in a 4KB word-addressable memory (1024 words), and executes them starting from `PC = 0`. The program halts when it fetches an all-zero instruction.
 
-## Run (Python CLI)
+**Run (Python CLI)**
 
 ```bash
 python3 mips_sim.py sample_input.txt
 ```
 
-## Run (Python GUI)
+**Run (Python GUI)**
 
 ```bash
 python3 mips_gui.py
 ```
 
-## Notes
+**Notes**
 - Memory is byte-addressable; word accesses use `address / 4`.
 - Register `R0` is always forced to `0` after each instruction.
 - Immediate values are sign-extended for `ADDI`, `LW`, `SW`, and `BEQ`.
 
-## Task-Oriented Sample Programs
+## 2. Code Explanation 🧩
 
-Each sample ends with `00000000` (halt). The expected outputs below are from running the simulator.
+**How the simulator runs**
+- Reads each hex line as a 32-bit instruction and loads it into memory.
+- Executes instructions from `PC = 0`, advancing `PC` or jumping/branching as required.
+- Stops when the fetched instruction is `00000000`.
 
-### 1) Calculator: sum, sub, pow2 (result in `R1`)
+**What the supported instructions do (quick logic)**
+- `ADD`, `SUB`, `SLT`: arithmetic/compare on registers.
+- `ADDI`: add immediate value to a register.
+- `LW`, `SW`: load/store a word from/to memory using base + offset.
+- `BEQ`: branch when two registers are equal.
+- `J`: jump to an absolute target.
+
+**Running sample tests**
+- Use the CLI with a sample file, for example:
+
+```bash
+python3 mips_sim.py sample_1_calculator.txt
+```
+
+- The simulator prints the final register state after halt. Compare it with the expected registers listed in each sample below.
+
+## 3. Samples (Line-by-Line + Run/Output) 🧪
+
+Each sample ends with `00000000` (halt). Expected outputs below are from running the simulator.
+
+### ✅ Sample 1: Calculator — sum, sub, pow2 (result in `R1`)
 File: `sample_1_calculator.txt`
 
-Purpose:
-- Uses `ADDI` to load inputs `a=7` and `b=3`.
-- Computes `a+b` into `R1`, then `a-b` into `R1`.
-- Computes `a^2` using a loop of repeated addition (`ADD`) with `BEQ` and `J`.
-- Final result is `a^2 = 49` in `R1`.
-
-Expected registers:
-- `R1 = 49` (final result)
-- `R8 = 7`, `R9 = 3`
-
-### 2) Palindrome check of a 5-word “string” (result in `R1`)
-File: `sample_2_palindrome.txt`
-
-Purpose:
-- Stores a 5-word sequence `[1, 2, 3, 2, 1]` into memory using `ADDI` + `SW`.
-- Compares symmetric elements from both ends using `LW`, `SUB`, and `BEQ`.
-- Uses `SLT`-free compare by checking if subtraction result is zero.
-- If any mismatch: sets `R1 = 0`, else `R1 = 1`.
-
-Expected registers:
-- `R1 = 1` (the sequence is a palindrome)
-
-### 3) Find max of 10 values in memory (result in `R3`)
-File: `sample_3_max10.txt`
-
-Purpose:
-- Stores 10 values into memory using `ADDI` + `SW`.
-- Loads the first value as the initial max.
-- Iterates remaining values, comparing with `SLT` and conditionally updating `R3`.
-- Final max is stored in `R3`.
-
-Values:
-`[13, 5, 22, 9, 17, 3, 31, 8, 11, 26]`
-
-Expected registers:
-- `R3 = 31`
-
-### 4) Average of 8 values in memory (result in `R3`)
-File: `sample_4_avg8.txt`
-
-Purpose:
-- Stores 8 values into memory using `ADDI` + `SW`.
-- Sums all values with a loop of `LW` and `ADD`.
-- Divides by 8 using repeated subtraction (since division isn’t supported).
-- Integer average stored in `R3`.
-
-Values:
-`[12, 6, 9, 3, 15, 18, 21, 7]` (sum = 91, integer average = 11)
-
-Expected registers:
-- `R3 = 11`
-
-### 5) Sum 1..300 using loop (result in `R3`)
-File: `sample_5_sum1to300.txt`
-
-Purpose:
-- Implements a classic loop to compute `1 + 2 + ... + 300`.
-- Uses `BEQ` with a limit value of 301 to stop.
-- Final sum stored in `R3`.
-
-Expected registers:
-- `R3 = 45150`
-
-## Line-by-Line Explanations (Samples 1–5)
-
-### Sample 1: `sample_1_calculator.txt`
+**Line-by-line**
 1. `20080007` — `ADDI R8,R0,7`: load `7` into `R8` (a).
 2. `20090003` — `ADDI R9,R0,3`: load `3` into `R9` (b).
 3. `01090820` — `ADD R1,R8,R9`: `R1 = a + b`.
@@ -109,7 +69,20 @@ Expected registers:
 10. `08000006` — `J 6`: jump back to line 7 (loop check).
 11. `00000000` — `HALT`: stop execution.
 
-### Sample 2: `sample_2_palindrome.txt`
+**Run**
+
+```bash
+python3 mips_sim.py sample_1_calculator.txt
+```
+
+**Expected registers**
+- `R1 = 49` (final result)
+- `R8 = 7`, `R9 = 3`
+
+### ✅ Sample 2: Palindrome check of a 5-word “string” (result in `R1`)
+File: `sample_2_palindrome.txt`
+
+**Line-by-line**
 1. `20010001` — `ADDI R1,R0,1`: preset result to `1` (assume palindrome).
 2. `20040001` — `ADDI R4,R0,1`: load first value into `R4`.
 3. `AC040000` — `SW R4,0(R0)`: store at `mem[0]`.
@@ -137,7 +110,19 @@ Expected registers:
 25. `0800000E` — `J 14`: repeat comparison loop.
 26. `00000000` — `HALT`: stop execution.
 
-### Sample 3: `sample_3_max10.txt`
+**Run**
+
+```bash
+python3 mips_sim.py sample_2_palindrome.txt
+```
+
+**Expected registers**
+- `R1 = 1` (the sequence is a palindrome)
+
+### ✅ Sample 3: Find max of 10 values in memory (result in `R3`)
+File: `sample_3_max10.txt`
+
+**Line-by-line**
 1. `2004000D` — `ADDI R4,R0,13`: load value.
 2. `AC040000` — `SW R4,0(R0)`: store at `mem[0]`.
 3. `20040005` — `ADDI R4,R0,5`: load value.
@@ -172,7 +157,19 @@ Expected registers:
 32. `08000018` — `J 24`: repeat loop.
 33. `00000000` — `HALT`: stop execution.
 
-### Sample 4: `sample_4_avg8.txt`
+**Run**
+
+```bash
+python3 mips_sim.py sample_3_max10.txt
+```
+
+**Expected registers**
+- `R3 = 31`
+
+### ✅ Sample 4: Average of 8 values in memory (result in `R3`)
+File: `sample_4_avg8.txt`
+
+**Line-by-line**
 1. `2004000C` — `ADDI R4,R0,12`: load value.
 2. `AC040000` — `SW R4,0(R0)`: store at `mem[0]`.
 3. `20040006` — `ADDI R4,R0,6`: load value.
@@ -208,7 +205,19 @@ Expected registers:
 33. `0800001B` — `J 27`: repeat division loop.
 34. `00000000` — `HALT`: stop execution.
 
-### Sample 5: `sample_5_sum1to300.txt`
+**Run**
+
+```bash
+python3 mips_sim.py sample_4_avg8.txt
+```
+
+**Expected registers**
+- `R3 = 11`
+
+### ✅ Sample 5: Sum 1..300 using loop (result in `R3`)
+File: `sample_5_sum1to300.txt`
+
+**Line-by-line**
 1. `20030000` — `ADDI R3,R0,0`: sum = 0.
 2. `20010001` — `ADDI R1,R0,1`: i = 1.
 3. `2002012D` — `ADDI R2,R0,301`: limit = 301.
@@ -217,3 +226,12 @@ Expected registers:
 6. `10220001` — `BEQ R1,R2,1`: if i == 301, exit loop.
 7. `08000003` — `J 3`: jump back to line 4 (loop body).
 8. `00000000` — `HALT`: stop execution.
+
+**Run**
+
+```bash
+python3 mips_sim.py sample_5_sum1to300.txt
+```
+
+**Expected registers**
+- `R3 = 45150`
