@@ -1,0 +1,81 @@
+% Exercise Template
+%A LaTeX template for typesetting exercise in Persian.
+%By: Zeinab Seifoori
+
+\documentclass[12pt]{exam}
+
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{graphicx,subfigure,wrapfig}
+\usepackage{multirow}
+%\usepackage{multicol}
+
+\usepackage[margin=20mm]{geometry}
+\usepackage{xepersian}
+\settextfont{XB Niloofar}
+
+\newcommand{\class}{درس ساختار و زبان کامپیوتر}
+\newcommand{\term}{نیم‌سال اول ۰۴-۰۵}
+\newcommand{\college}{دانشکده مهندسی کامپیوتر}
+\newcommand{\prof}{استاد: دکتر اسدی}
+
+\singlespacing
+\parindent 0ex
+
+\lstset{
+keywordstyle=\textbf,
+identifierstyle=, 
+stringstyle=\ttfamily,
+commentstyle=\color{LimeGreen}, 
+stringstyle=\ttfamily,
+numberstyle=\footnotesize,
+showstringspaces=false} 
+\begin{document}
+
+% These commands set up the running header on the top of the exam pages
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{صفحه \thepage\ از \numpages}{}{\class}
+\runningheadrule
+\begin{tabular}{p{.7\textwidth} l}
+\multicolumn{2}{c}{\textbf{به نام خدا}}\\
+\multirow{2}{*}{\includegraphics[scale=0.2] {images/logo.png}} & \\ \\
+&  \textbf{\class}\\
+&  \textbf{\term}\\
+&  \textbf{\prof}\\ \\
+ \textbf{\college} &  \\
+\end{tabular}\\
+
+\rule[1ex]{\textwidth}{.1pt}
+\noindent
+\textbf{ پروژه اجباری شماره ۳ : BadUSB با شبیه‌سازی پروتکل HID}
+\hfill
+\textbf{شماره تیم :‌ 25}
+
+\rule[1ex]{\textwidth}{.1pt}
+%\makebox[45mm]{\hrulefill}\\
+\vspace{0pt}
+
+\textbf{اطلاعات تیم دانشجویی :}
+\begin{itemize}
+    \item محمدپارسا محمودآبادی آرانی - 403106679
+    \item سیدامیرحسین هاشمی شاهرودی - 403170271
+    \item نادر احمدی - 403105674
+    \item پارسا پاک - 403105822
+\end{itemize}
+
+\textbf{شرح مختصر پروژه :}\\
+
+\textbf{هدف و ضرورت پروژه}
+هدف اصلی این پروژه، طراحی و پیاده‌سازی یک ابزار نفوذ سخت‌افزاری در سطح پایین ($Low-level$) با استفاده از پروتکل $HID$ و تراشه‌های خانواده $AVR$ است. این ابزار که تحت عنوان $BadUSB$ شناخته می‌شود، با بهره‌گیری از برد $Digispark$ مهارت‌های برنامه‌نویسی اسمبلی را برای تعامل مستقیم با پورت $USB$ و شبیه‌سازی دستگاه‌های ورودی به چالش می‌کشد. هدف نهایی، درک عمیق نحوه انتقال داده‌های حساس به صورت غیرمتعارف، بدون استفاده از کتابخانه‌های آماده و با تکیه بر منطق محض اسمبلی است.\\
+
+\textbf{وسایل و تجهیزات مورد نیاز}
+برای اجرای این پروژه، از برد توسعه $Digispark$ مبتنی بر میکروکنترلر $ATtiny85$ به عنوان هسته اصلی استفاده می‌شود. تجهیزات جانبی شامل یک عدد کلید فشاری ($Push\ Button$) برای مدیریت فاز بازیابی، مقاومت‌های لازم و در صورت نیاز، یک نمایشگر $LCD\ I2C$ برای پایش وضعیت و نمایش داده‌های استخراج شده است. در سمت نرم‌افزاری نیز، سیستم هدف می‌تواند مجهز به سیستم‌عامل ویندوز یا لینوکس باشد تا اسکریپت‌های استخراج داده را اجرا نماید.\\
+
+\textbf{گام‌های اجرایی و فنی}
+روند اجرای پروژه شامل سه گام اساسی است: ابتدا بستن مدار سخت‌افزاری و اتصال کلید و نمایشگر به پایه‌های $GPIO$ برد؛ سپس نوشتن اسکریپت‌های سمت کامپیوتر ($Bash$ یا $PowerShell$) برای استخراج اطلاعاتی نظیر رمز عبور وای‌فای؛ و در نهایت پیاده‌سازی برنامه اصلی به زبان اسمبلی $AVR$. بخش حساس فنی، طراحی پروتکل ارتباطی دست‌ساز برای خواندن وضعیت $LED$های کیبورد (مانند $Caps\ Lock$) و ذخیره‌سازی بیت‌به‌بیت داده‌ها در حافظه ماندگار $EEPROM$ میکروکنترلر است.\\
+
+\textbf{سناریوی عملیاتی پروژه}
+در سناریوی مورد انتظار، ابزار پس از اتصال به سیستم، به صورت خودکار محیط ترمینال را باز کرده و اسکریپت استخراج را اجرا می‌کند؛ سپس داده‌های به دست آمده را از طریق تغییر وضعیت چراغ‌های کیبورد به برد منتقل و ذخیره می‌کند. در مرحله بعد، نفوذگر با جدا کردن برد و اتصال مجدد آن در حالی که دکمه سخت‌افزاری را نگه داشته است، وارد فاز بازیابی می‌شود. در این فاز، برد به صورت خودکار یک نرم‌افزار ویرایشگر متن (مانند $Notepad$) را باز کرده و تمامی اطلاعات ذخیره شده در حافظه را با سرعت بالا تایپ و نمایش می‌دهد.\\
+
+\end{document}

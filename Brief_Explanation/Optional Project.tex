@@ -1,0 +1,81 @@
+% Exercise Template
+%A LaTeX template for typesetting exercise in Persian.
+%By: Zeinab Seifoori
+
+\documentclass[12pt]{exam}
+
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{graphicx,subfigure,wrapfig}
+\usepackage{multirow}
+%\usepackage{multicol}
+
+\usepackage[margin=20mm]{geometry}
+\usepackage{xepersian}
+\settextfont{XB Niloofar}
+
+\newcommand{\class}{درس ساختار و زبان کامپیوتر}
+\newcommand{\term}{نیم‌سال اول ۰۴-۰۵}
+\newcommand{\college}{دانشکده مهندسی کامپیوتر}
+\newcommand{\prof}{استاد: دکتر اسدی}
+
+\singlespacing
+\parindent 0ex
+
+\lstset{
+keywordstyle=\textbf,
+identifierstyle=, 
+stringstyle=\ttfamily,
+commentstyle=\color{LimeGreen}, 
+stringstyle=\ttfamily,
+numberstyle=\footnotesize,
+showstringspaces=false} 
+\begin{document}
+
+% These commands set up the running header on the top of the exam pages
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{صفحه \thepage\ از \numpages}{}{\class}
+\runningheadrule
+\begin{tabular}{p{.7\textwidth} l}
+\multicolumn{2}{c}{\textbf{به نام خدا}}\\
+\multirow{2}{*}{\includegraphics[scale=0.2] {images/logo.png}} & \\ \\
+&  \textbf{\class}\\
+&  \textbf{\term}\\
+&  \textbf{\prof}\\ \\
+ \textbf{\college} &  \\
+\end{tabular}\\
+
+\rule[1ex]{\textwidth}{.1pt}
+\noindent
+\textbf{ پروژه اختیاری شماره ۶ : پیاده‌سازی شبیه‌ساز ساده MIPS}
+\hfill
+\textbf{شماره تیم :‌ 25}
+
+\rule[1ex]{\textwidth}{.1pt}
+%\makebox[45mm]{\hrulefill}\\
+\vspace{0pt}
+
+\textbf{اطلاعات تیم دانشجویی :}
+\begin{itemize}
+    \item محمدپارسا محمودآبادی آرانی - 403106679
+    \item سیدامیرحسین هاشمی شاهرودی - 403170271
+    \item نادر احمدی - 403105674
+    \item پارسا پاک - 403105822
+\end{itemize}
+
+\textbf{شرح مختصر پروژه :}\\
+
+\textbf{هدف و ضرورت پروژه}
+هدف از این پروژه، پیاده‌سازی یک شبیه‌ساز نرم‌افزاری برای پردازنده $MIPS32$ به منظور درک عمیق معماری کامپیوتر و نحوه اجرای دستورات در سطح ماشین است. در این طرح، دانشجویان با مفاهیم بنیادی نظیر واکشی دستور ($Fetch$), رمزگشایی ($Decode$) و اجرای عملیات محاسباتی و منطقی آشنا می‌شوند. ضرورت اصلی پروژه، پل زدن میان زبان‌های سطح بالا مانند $C$ یا پایتون و زبان اسمبلی است تا نحوه تعامل مستقیم پردازنده با حافظه ($Memory$) و ثبات‌ها ($Registers$) به طور عملیاتی شبیه‌سازی گردد.\\
+
+\textbf{اجزای سخت‌افزاری شبیه‌ساز}
+ساختار سخت‌افزاری این شبیه‌ساز از سه بخش حیاتی تشکیل شده است: حافظه اصلی ($RAM$) که به صورت یک آرایه برای ذخیره کدها و داده‌ها تعریف می‌شود, مجموعه ثبات‌ها ($Register\ File$) شامل ۳۲ ثبات عمومی که ثبات $reg[0]$ آن همواره مقدار صفر را نگه می‌دارد, و شمارنده برنامه ($PC$) که آدرس دستور فعلی را مدیریت می‌کند. این اجزا در قالب متغیرهای نرم‌افزاری پیاده‌سازی می‌شوند تا مدل رفتاری پردازنده را در محیط سیستم‌عامل شبیه‌سازی کنند.\\
+
+\textbf{فرآیند شبیه‌سازی و قالب دستورات}
+فرآیند شبیه‌سازی بر اساس تحلیل دقیق سه قالب اصلی دستورات $MIPS$ یعنی نوع $R-Type$ برای عملیات حسابی، نوع $I-Type$ برای دستورات شرطی و دسترسی به حافظه، و نوع $J-Type$ برای پرش‌های مستقیم استوار است. گام‌های اجرایی شامل یک چرخه تکرار شونده است که در آن ابتدا کد ماشین به صورت هگزادسیمال واکشی شده, سپس فیلدهای $Opcode$, $rs$, $rt$ و $rd$ استخراج می‌گردند و در نهایت بر اساس نوع دستور، عملیات متناظر (مانند $ADD$ یا $LW$) بر روی داده‌ها اعمال می‌شود.\\
+
+\textbf{سناریوی عملیاتی نهایی}
+در سناریوی نهایی، شبیه‌ساز یک فایل ورودی حاوی کدهای ماشین را خوانده و آن‌ها را در حافظه بارگذاری می‌کند. سیستم در هر گام، آدرس $PC$ را به‌روزرسانی کرده و واحد کنترل با بررسی $Funct$ یا $Opcode$, تصمیم مقتضی برای تغییر وضعیت ثبات‌ها یا نوشتن در حافظه را اتخاذ می‌نماید. این چرخه تا رسیدن به دستور توقف ($Halt$) ادامه می‌یابد و در پایان، وضعیت نهایی حافظه و ثبات‌ها به کاربر نمایش داده می‌شود تا صحت اجرای الگوریتم‌های اسمبلی (مانند عملیات تفریق یا مقایسه $SLT$) مورد تایید قرار گیرد.\\
+
+\end{document}
