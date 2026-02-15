@@ -1,0 +1,106 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\geometry{margin=1in}
+
+\title{گزارش فنی پروژه BadUSB با شبیه‌سازی HID}
+\author{گروه/نام شما}
+\date{\today}
+
+% تنظیمات برای نمایش کد
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    stringstyle=\color{red},
+    breaklines=true,
+    columns=fullflexible,
+    frame=single
+}
+
+\begin{document}
+
+\maketitle
+
+\section{مقدمه}
+این پروژه شبیه‌سازی رفتار یک BadUSB با استفاده از میکروکنترلر ATtiny85 و برد توسعه Digispark در محیط Proteus است. هدف ایجاد یک HID مجازی است که بتواند داده‌ها را استخراج و بازیابی کند. پروژه شامل سه بخش اصلی است: \textbf{Firmware روی AVR}، \textbf{Bridge Python روی کامپیوتر} و \textbf{شبیه‌سازی Proteus}.
+
+\section{اهداف پروژه}
+\begin{itemize}
+    \item یادگیری برنامه‌نویسی سطح پایین AVR با زبان اسمبلی و C
+    \item شبیه‌سازی دستگاه‌های ورودی USB (HID) با پروتکل دست‌ساز
+    \item استخراج داده‌های سیستم هدف و ارسال بازگشتی
+    \item کار با حافظه RAM و EEPROM در سطح میکروکنترلر
+\end{itemize}
+
+\section{معماری سیستم}
+\subsection{بخش میکروکنترلر (ATtiny85)}
+کد AVR روی ATtiny85 اجرا می‌شود و UART نرم‌افزاری برای ارتباط با Bridge فراهم می‌کند. نمونه تعریف پین‌ها:
+\begin{lstlisting}[language=C]
+#define TX_PIN PORTB.0
+#define RX_PIN PINB.1
+#define BTN_PIN PINB.4
+\end{lstlisting}
+
+\textbf{فاز استخراج (Attack Mode):}  
+می‌فرستد CMD/TYPE/KEY به Bridge برای اجرای دستورات در سیستم هدف و دریافت داده‌ها (مثلاً IP سیستم) و ذخیره در آرایه:
+\begin{lstlisting}[language=C]
+char stolen_data[32];
+\end{lstlisting}
+
+\textbf{فاز بازیابی (Playback Mode):}  
+با فشردن دکمه روی برد، داده‌ها دوباره به سیستم هدف ارسال می‌شوند.
+
+\subsection{Bridge Python}
+Bridge وظیفه مدیریت دستورات و شبیه‌سازی HID را برعهده دارد. دستورات اصلی شامل:
+\begin{itemize}
+    \item CMD:RUN → باز کردن Run ویندوز
+    \item TYPE: متن → تایپ متن
+    \item KEY:ENTER → زدن Enter
+    \item ACTION:GET\_CLIP → خواندن محتویات Clipboard و ارسال به MCU
+\end{itemize}
+
+\subsection{شبیه‌سازی در Proteus}
+در محیط Proteus، LED‌ها (CapsLock/NumLock) برای شبیه‌سازی انتقال داده وضعیت کلیدها استفاده می‌شوند. MCU با تغییر وضعیت LED، بیت‌های داده را ارسال و دریافت می‌کند.
+
+\section{شرح پروتکل دست‌ساز}
+\begin{itemize}
+    \item ارسال داده‌ها کاراکتر به کاراکتر
+    \item هر دستور با '\textbackslash n' پایان می‌یابد
+    \item دستورات از نوع CMD/TYPE/KEY/ACTION
+    \item Bridge مسئول تشخیص دستور و اجرای عملیاتی متناسب است
+\end{itemize}
+
+\section{چالش‌های اسمبلی AVR و LED}
+\begin{itemize}
+    \item \textbf{Bit-banged UART:} نیاز به timing دقیق با استفاده از delay\_us
+    \item \textbf{خواندن وضعیت کلید:} استفاده از polling روی پین BTN
+    \item \textbf{LED Status:} برای فاز استخراج، LEDهای CapsLock/NumLock/ScrollLock نشان‌دهنده بیت‌های داده هستند
+    \item \textbf{حافظه محدود:} استفاده بهینه از RAM و مدیریت آرایه‌ها
+\end{itemize}
+
+\section{مدیریت حافظه}
+\begin{itemize}
+    \item آرایه fixed-size 32 بایتی برای ذخیره داده‌های استخراج‌شده
+    \item استفاده از توابع uart\_rx و uart\_tx برای خواندن و نوشتن بدون overflow
+    \item در نسخه شبیه‌سازی، EEPROM واقعی استفاده نشده و RAM جایگزین آن شده است
+\end{itemize}
+
+\section{نمونه جریان داده}
+\begin{enumerate}
+    \item MCU می‌فرستد: CMD:RUN
+    \item Bridge باز می‌کند Run
+    \item MCU می‌فرستد: TYPE:powershell ...
+    \item Bridge اجرا می‌کند و Clipboard را پر می‌کند
+    \item MCU دستور ACTION:GET\_CLIP را ارسال می‌کند
+    \item Bridge محتویات Clipboard را کاراکتر به کاراکتر روی UART می‌فرستد
+    \item MCU داده‌ها را در stolen\_data ذخیره می‌کند
+\end{enumerate}
+
+\section{نتیجه‌گیری}
+این پروژه یک شبیه‌سازی کامل BadUSB را بدون نیاز به سخت‌افزار واقعی فراهم می‌کند و مهارت‌های برنامه‌نویسی AVR، مدیریت حافظه، پروتکل‌نویسی دست‌ساز و شبیه‌سازی HID را تمرین می‌دهد.
+
+\end{document}
