@@ -1,163 +1,158 @@
-# BadUSB HID Simulation Project 🖥️
+# Project Report: BadUSB Mechanism Implementation Using ATtiny85
 
-## 1. Title and Introduction 🚀
-
-This project simulates a BadUSB device using the following components:
-
-- **MCU:** ATtiny85 microcontroller (firmware in C/Assembly)
-- **Bridge Script:** Python script on host PC
-- **Simulation Environment:** Proteus for LED/UART simulation
-
-The system functions as a Human Interface Device (HID) that can:
-
-- Extract system data (e.g., IP) from the host PC
-- Transmit and receive data using a custom LED/UART protocol
-- Replay stored keystrokes to the target system
-
-### Run the Bridge Script on Host PC
-
-```bash
-python3 bridge.py
-```
-
-### Notes
-
-- MCU communicates via bit-banged UART.
-- LED states (CapsLock/NumLock/ScrollLock) represent transmitted bits.
-- Bridge interprets MCU commands and simulates keyboard input using pyautogui.
+**Project Name:** System Information (IP Address) Extraction via Keyboard Simulation  
+**Microcontroller:** ATtiny85  
+**Programming Languages:** C (CodeVisionAVR) and Python  
+**Simulation Environment:** Proteus Design Suite  
 
 ---
 
-## 2. MCU Firmware (ATtiny85) 🧩
+## 1. Introduction and Objectives
 
-### Pin Configuration
+The goal of this project is to simulate the behavior of a BadUSB device. BadUSBs are malicious USB devices that present themselves to the operating system as a keyboard (HID – Human Interface Device). Since operating systems inherently trust keyboards, such devices can rapidly type and execute malicious commands.
 
-```c
-#define TX_PIN PORTB.0
-#define RX_PIN PINB.1
-#define BTN_PIN PINB.4
-```
+In this project, instead of implementing the full and complex USB protocol in simulation, a hybrid approach is used:
 
-### UART Functions
+1. The ATtiny85 acts as the main controller that manages the attack scenario.
+2. Serial communication (UART) is used as the command transport layer.
+3. A Python script acts as a virtual driver that converts serial commands into real keyboard events.
 
-- uart_tx(char data) — sends a character bit by bit using precise delays
-- uart_rx() — receives characters bit by bit
-- uart_print_flash(flash char *str) — prints string stored in flash
-- uart_print_ram(char *str) — prints string stored in RAM
-
-### Attack Mode (Extraction)
-
-- MCU sends CMD:RUN → opens Windows Run dialog
-- MCU sends TYPE:powershell "Set-Clipboard -Value (Get-NetIPAddress -AddressFamily IPv4).IPAddress[0]" → copies IP to clipboard
-- MCU sends KEY:ENTER → executes command
-- MCU sends ACTION:GET_CLIP → Bridge reads clipboard and sends IP character-by-character back to MCU
-- MCU stores result in stolen_data[32]
-
-### Playback Mode
-
-- User presses the button → MCU sends stored keystrokes to the host
-- Automatically opens Notepad and types extracted data
+**Final Objective:** Automatically extract the victim system’s IP address upon connection and display it on demand when the user presses a button.
 
 ---
 
-## 3. Bridge Python Script 🐍
+## 2. Hardware Design
 
-The Bridge Python script handles communication with the MCU and simulates keyboard input on the host PC.
+### a) Circuit Schematic
 
-### Command Handling
+The circuit is built around the 8-pin ATtiny85 microcontroller. Since this microcontroller lacks a hardware UART module, serial communication is implemented in software (bit-banging).
 
-- CMD:RUN → Opens Run dialog
-- TYPE:<text> → Types text using pyautogui
-- KEY:ENTER → Presses Enter key
-- ACTION:GET_CLIP → Reads clipboard content and sends to MCU
+- **Processing Unit (U1):** ATtiny85 running on its internal 8 MHz oscillator.  
+- **Serial Interface (P1):** COMPIM component in Proteus to connect the simulation to Windows COM ports.  
+  - MCU TX pin (PB0) is connected to COMPIM TXD (COMPIM uses direct TX-to-TX connections in Proteus).  
+- **User Input:** One push button connected to pin PB4.  
+- **Pull-up Resistor:** The internal pull-up resistor of the MCU is enabled to prevent button noise (an external 10 kΩ resistor can also be used if needed).
 
-### Example Code Snippet
+### b) Critical Fuse Bit Settings
 
-```python
-if cmd.startswith("TYPE:"):
-    pyautogui.write(cmd[5:], interval=0.01)
-```
+Accurate clock timing is essential for reliable serial communication (baud rate):
 
-### Bridge Script Responsibilities
-
-- Serial communication with MCU
-- Execute host-side commands
-- Send LED status updates to MCU
-- Maintain timing to ensure correct UART communication
+- **CKSEL Fuses:** 0100 (Internal RC Oscillator at 8 MHz).  
+- **CKDIV8:** Must be disabled (unprogrammed) to prevent dividing the clock down to 1 MHz.
 
 ---
 
-## 4. Proteus Simulation 💡
+## 3. Software Design
 
-- Simulates LEDs representing CapsLock / NumLock / ScrollLock
-- LED states are used to transmit bits to the MCU
-- Allows testing of the extraction and playback system without physical hardware
+### a) Microcontroller Firmware (CodeVisionAVR)
 
----
+The MCU firmware is responsible for timing and sending the attack scenarios.
 
-## 5. Custom Protocol 🔄
+1. **Software UART:**  
+   The `uart_tx` function uses precise microsecond delays to emulate the RS-232 protocol on pin PB0.  
+   For a baud rate of 9600 with an 8 MHz clock, each data bit lasts approximately 104 µs.
 
-- Data transmitted character by character over bit-banged UART
-- Commands terminated with \n
+2. **State Machine:**  
+   - **Phase 1 (Auto-Run):** Immediately after power-up and a safe delay (about 3 seconds), commands are sent to open the Run dialog and execute a command prompt payload.  
+   - **Phase 2 (Interactive):** The MCU enters an infinite loop and waits for pin PB4 to go low (button press).
 
-### Supported Commands
+**Injected Payload:**
 
-- CMD:<action> — system actions
-- TYPE:<text> — type text on host
-- KEY:<key> — press a specific key
-- ACTION:GET_CLIP — retrieve clipboard content
+    cmd /c "ipconfig | findstr IPv4 > %TEMP%\temp_ip.txt"
 
-### Timing Considerations
+This command extracts the IPv4 address and stores it in a temporary file, avoiding the need for administrator privileges.
 
-- MCU and Bridge maintain delays (50–100 ms) between characters to avoid overflow
-- LED polling occurs every 0.2 seconds to detect state changes
+### b) Bridge Script (Python)
 
----
+The Python script acts as a command translator.
 
-## 6. Memory Management 🧠
-
-- Temporary storage: stolen_data[32]
-- Prevents overflow by limiting extracted data length
-- EEPROM functionality is simulated using RAM in Proteus
-- MCU firmware clears buffer before reuse
+- **pyserial library:** Reads data from the virtual COM port.  
+- **pyautogui library:** Converts received data into real keyboard events.  
+- **Custom Protocol:**  
+  - `#R` → Press Win + R  
+  - `#E` → Press Enter  
+  - Plain text → Typed character by character  
 
 ---
 
-## 7. Sample Flow (Extraction → Playback) 🔁
+## 4. Execution Workflow
 
-1. MCU sends CMD:RUN → Bridge opens Run dialog
-2. MCU sends TYPE:powershell command → executes clipboard extraction
-3. MCU sends KEY:ENTER
-4. MCU sends ACTION:GET_CLIP
-5. Bridge sends clipboard data to MCU
-6. MCU stores extracted IP in stolen_data
-7. Playback mode: button press → MCU sends TYPE:<stolen_data> to host
-
----
-
-## 8. Example Commands and Actions 📝
-
-MCU Command | Host Action  
------------|-------------
-CMD:RUN | Open Windows Run dialog  
-TYPE:notepad | Open Notepad  
-KEY:ENTER | Press Enter  
-ACTION:GET_CLIP | Retrieve clipboard content  
+1. **Connection:** The (simulated) device powers on.  
+2. **Information Collection Phase:**  
+   - The MCU waits for about 5 seconds.  
+   - The Run dialog opens.  
+   - The IP extraction command is typed and executed.  
+   - A CMD window briefly opens and closes (data is saved silently in a text file).  
+3. **Idle Phase:** The MCU enters standby mode.  
+4. **Information Display Phase:**  
+   - The user presses the button on the circuit.  
+   - The MCU opens the Run dialog again.  
+   - The command `notepad %TEMP%\temp_ip.txt` is typed.  
+   - The text file containing the IP address is opened and displayed.
 
 ---
 
-## 9. Challenges and Notes ⚡
+## 5. Step-by-Step Execution Guide
 
-- Bit-banged UART required precise timing
-- LED signaling used unconventional channel for data transmission
-- Ensuring reliable clipboard reading in Windows required retries
-- MCU firmware written in C/Assembly required careful memory management
+Follow these steps carefully to run the project successfully.
+
+### Prerequisites
+
+1. Install Python version 3.6 or higher.  
+2. Install required Python libraries using CMD:
+
+       pip install pyserial pyautogui
+
+3. Install a Virtual Serial Port Driver (such as VSPE or com0com) to create a virtual COM port pair (for example, COM1 ↔ COM2).
+
+### Step 1: Configure Virtual COM Ports
+
+- Open the virtual serial port driver software.  
+- Create a new port pair (e.g., COM1 connected to COM2).  
+- Assumptions:  
+  - COM1 is used by Proteus.  
+  - COM2 is used by the Python script.
+
+### Step 2: Prepare Proteus
+
+1. Open the Proteus project file.  
+2. Double-click the COMPIM component:  
+   - Physical Port: set to COM1  
+   - Physical Baud Rate: 9600  
+   - Virtual Baud Rate: 9600  
+3. Double-click the ATtiny85 microcontroller:  
+   - Load the `.hex` or `.cof` file generated by CodeVision.  
+   - Set Clock Frequency to 8 MHz.  
+   - Set CKSEL fuses to Internal RC Oscillator 8 MHz.
+
+### Step 3: Run the Python Script
+
+1. Open `usb_bridge.py`.  
+2. Verify that `SERIAL_PORT = 'COM2'` matches the paired port.  
+3. Run the script. You should see the message:
+
+       Listening on COM2...
+
+### Step 4: Start the Simulation
+
+1. Click the Play button in Proteus.  
+2. Wait about 3–5 seconds.  
+3. Phase 1 observation: Do not touch the mouse or keyboard. The Run dialog will open and commands will be typed automatically.  
+4. Phase 2 test: Press and hold the button in Proteus for about half a second.  
+5. Result: Notepad opens and displays your system’s IP address.
 
 ---
 
-## 10. Conclusion ✅
+## 6. Troubleshooting
 
-- Successfully simulates a BadUSB HID device without physical hardware
-- Demonstrates microcontroller programming, custom UART protocol, LED signaling, and host automation
-- Safe environment to test data extraction and playback mechanisms
-- Bridges theoretical understanding with practical simulation of hardware attack
+- **Garbled or incorrect text is typed:**  
+  - Cause: Incorrect MCU clock frequency.  
+  - Solution: Ensure fuse bits are set to 8 MHz and delays are calculated for 8 MHz.
+
+- **Nothing happens:**  
+  - Cause: Serial ports are not correctly connected.  
+  - Solution: Verify that Python is listening on the correct port (e.g., COM2) and Proteus is connected to the paired port (COM1).
+
+- **Access Denied error in Python:**  
+  - Cause: The serial port is already in use by another application.  
+  - Solution: Close and reopen the Python terminal or change the COM port assignment.
