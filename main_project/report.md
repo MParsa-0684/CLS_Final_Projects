@@ -1,163 +1,140 @@
-# BadUSB HID Simulation Project 🖥️
-
-## 1. Title and Introduction 🚀
-
-This project simulates a BadUSB device using the following components:
-
-- **MCU:** ATtiny85 microcontroller (firmware in C/Assembly)
-- **Bridge Script:** Python script on host PC
-- **Simulation Environment:** Proteus for LED/UART simulation
-
-The system functions as a Human Interface Device (HID) that can:
-
-- Extract system data (e.g., IP) from the host PC
-- Transmit and receive data using a custom LED/UART protocol
-- Replay stored keystrokes to the target system
-
-### Run the Bridge Script on Host PC
-
-```bash
-python3 bridge.py
-```
-
-### Notes
-
-- MCU communicates via bit-banged UART.
-- LED states (CapsLock/NumLock/ScrollLock) represent transmitted bits.
-- Bridge interprets MCU commands and simulates keyboard input using pyautogui.
+این یک گزارش فنی کامل و دستورالعمل اجرایی برای پروژه "شبیه‌سازی حمله BadUSB با استفاده از ATtiny85 و پل ارتباطی سریال" است. این مستندات می‌تواند به عنوان گزارش نهایی پروژه یا راهنمای آزمایشگاه مورد استفاده قرار گیرد.
 
 ---
 
-## 2. MCU Firmware (ATtiny85) 🧩
+# گزارش پروژه: پیاده‌سازی مکانیزم BadUSB با ATtiny85
 
-### Pin Configuration
-
-```c
-#define TX_PIN PORTB.0
-#define RX_PIN PINB.1
-#define BTN_PIN PINB.4
-```
-
-### UART Functions
-
-- uart_tx(char data) — sends a character bit by bit using precise delays
-- uart_rx() — receives characters bit by bit
-- uart_print_flash(flash char *str) — prints string stored in flash
-- uart_print_ram(char *str) — prints string stored in RAM
-
-### Attack Mode (Extraction)
-
-- MCU sends CMD:RUN → opens Windows Run dialog
-- MCU sends TYPE:powershell "Set-Clipboard -Value (Get-NetIPAddress -AddressFamily IPv4).IPAddress[0]" → copies IP to clipboard
-- MCU sends KEY:ENTER → executes command
-- MCU sends ACTION:GET_CLIP → Bridge reads clipboard and sends IP character-by-character back to MCU
-- MCU stores result in stolen_data[32]
-
-### Playback Mode
-
-- User presses the button → MCU sends stored keystrokes to the host
-- Automatically opens Notepad and types extracted data
+نام پروژه: استخراج اطلاعات سیستم (IP Address) با استفاده از شبیه‌سازی صفحه کلید
+میکروکنترلر: ATtiny85
+زبان برنامه‌نویسی: C (CodeVisionAVR) و Python
+محیط شبیه‌سازی: Proteus Design Suite
 
 ---
 
-## 3. Bridge Python Script 🐍
+## ۱. مقدمه و اهداف
+هدف این پروژه شبیه‌سازی عملکرد یک دستگاه BadUSB است. BadUSBها دستگاه‌های USB مخربی هستند که خود را به عنوان صفحه کلید (HID - Human Interface Device) به سیستم معرفی می‌کنند. از آنجا که سیستم‌عامل‌ها به صفحه کلیدها اعتماد کامل دارند، این دستگاه می‌تواند با سرعت بالا دستورات مخرب را تایپ و اجرا کند.
 
-The Bridge Python script handles communication with the MCU and simulates keyboard input on the host PC.
+در این پروژه، به جای استفاده از پروتکل پیچیده USB در شبیه‌سازی، از یک رویکرد هیبریدی استفاده شده است:
+1.  ATtiny85 مغز متفکر است که سناریوی حمله را مدیریت می‌کند.
+2.  پورت سریال (UART) بستر انتقال دستورات است.
+3.  اسکریپت پایتون نقش درایو مجازی را بازی می‌کند که دستورات سریال را به کلیدهای واقعی کیبورد تبدیل می‌کند.
 
-### Command Handling
-
-- CMD:RUN → Opens Run dialog
-- TYPE:<text> → Types text using pyautogui
-- KEY:ENTER → Presses Enter key
-- ACTION:GET_CLIP → Reads clipboard content and sends to MCU
-
-### Example Code Snippet
-
-```python
-if cmd.startswith("TYPE:"):
-    pyautogui.write(cmd[5:], interval=0.01)
-```
-
-### Bridge Script Responsibilities
-
-- Serial communication with MCU
-- Execute host-side commands
-- Send LED status updates to MCU
-- Maintain timing to ensure correct UART communication
+هدف نهایی: استخراج خودکار آدرس IP قربانی در لحظه اتصال و نمایش آن در زمان درخواست کاربر (فشردن دکمه).
 
 ---
 
-## 4. Proteus Simulation 💡
+## ۲. طراحی سخت‌افزار (Hardware Design)
 
-- Simulates LEDs representing CapsLock / NumLock / ScrollLock
-- LED states are used to transmit bits to the MCU
-- Allows testing of the extraction and playback system without physical hardware
+### الف) شماتیک مدار
+مدار بر پایه میکروکنترلر 8 پین ATtiny85 طراحی شده است. از آنجا که این میکروکنترلر ماژول سخت‌افزاری UART ندارد، ارتباط سریال به صورت نرم‌افزاری (Bit-Banging) پیاده‌سازی شده است.
 
----
+*   واحد پردازش (U1): میکروکنترلر ATtiny85 با فرکانس داخلی 8MHz.
+*   رابط سریال (P1): المان COMPIM در پروتئوس برای اتصال شبیه‌سازی به پورت‌های COM ویندوز.
+    *   پایه TX میکرو (PB0) به پایه TXD کامپیم متصل می‌شود (در پروتئوس اتصالات COMPIM مستقیم است، یعنی TX به TX وصل می‌شود).
+*   ورودی کاربر: یک دکمه فشاری (Push Button) متصل به پایه PB4.
+*   مقاومت Pull-up: برای جلوگیری از نویز روی دکمه، مقاومت داخلی میکروکنترلر فعال شده است (در صورت نیاز می‌توان مقاومت خارجی 10k هم قرار داد).
 
-## 5. Custom Protocol 🔄
-
-- Data transmitted character by character over bit-banged UART
-- Commands terminated with \n
-
-### Supported Commands
-
-- CMD:<action> — system actions
-- TYPE:<text> — type text on host
-- KEY:<key> — press a specific key
-- ACTION:GET_CLIP — retrieve clipboard content
-
-### Timing Considerations
-
-- MCU and Bridge maintain delays (50–100 ms) between characters to avoid overflow
-- LED polling occurs every 0.2 seconds to detect state changes
+### ب) تنظیمات حیاتی فیوز بیت‌ها
+برای هماهنگی دقیق زمان‌بندی سریال (Baud Rate)، فرکانس میکرو باید دقیق باشد:
+*   CKSEL Fuses: 0100 (Internal RC Oscillator 8 MHz).
+*   CKDIV8: باید غیرفعال (Unprogrammed) باشد تا فرکانس روی 1MHz تقسیم نشود.
 
 ---
 
-## 6. Memory Management 🧠
+## ۳. طراحی نرم‌افزار (Software Design)
 
-- Temporary storage: stolen_data[32]
-- Prevents overflow by limiting extracted data length
-- EEPROM functionality is simulated using RAM in Proteus
-- MCU firmware clears buffer before reuse
+### الف) فیرم‌ور میکروکنترلر (CodeVisionAVR)
+کد میکروکنترلر وظیفه زمان‌بندی و ارسال سناریوها را بر عهده دارد.
 
----
+1.  Software UART: تابع uart_tx با استفاده از تاخیرهای دقیق میکروثانیه، پروتکل RS232 را روی پایه PB0 شبیه‌سازی می‌کند. برای بادریت 9600 و کلاک 8MHz، هر بیت داده حدود 104 میکروثانیه طول می‌کشد.
+2.  ماشین حالت (State Machine):
+    *   Phase 1 (Auto-Run): بلافاصله پس از روشن شدن و یک تاخیر ایمن (۳ ثانیه)، دستورات باز کردن Run و اجرای کامند cmd ارسال می‌شود.
+    *   Phase 2 (Interactive): میکرو وارد یک حلقه بی‌نهایت می‌شود و منتظر Low شدن پایه PB4 (فشرده شدن دکمه) می‌ماند.
 
-## 7. Sample Flow (Extraction → Playback) 🔁
+دستور تزریق شده (Payload):
+cmd /c "ipconfig | findstr IPv4 > %TEMP%\temp_ip.txt"
+این دستور IP را پیدا کرده و در پوشه موقت ویندوز (%TEMP%) ذخیره می‌کند تا نیازی به دسترسی Administrator نباشد.
 
-1. MCU sends CMD:RUN → Bridge opens Run dialog
-2. MCU sends TYPE:powershell command → executes clipboard extraction
-3. MCU sends KEY:ENTER
-4. MCU sends ACTION:GET_CLIP
-5. Bridge sends clipboard data to MCU
-6. MCU stores extracted IP in stolen_data
-7. Playback mode: button press → MCU sends TYPE:<stolen_data> to host
-
----
-
-## 8. Example Commands and Actions 📝
-
-MCU Command | Host Action  
------------|-------------
-CMD:RUN | Open Windows Run dialog  
-TYPE:notepad | Open Notepad  
-KEY:ENTER | Press Enter  
-ACTION:GET_CLIP | Retrieve clipboard content  
+### ب) اسکریپت پل ارتباطی (Python Script)
+این اسکریپت نقش مترجم را بازی می‌کند.
+*   کتابخانه pyserial: داده‌ها را از پورت COM مجازی می‌خواند.
+*   کتابخانه pyautogui: داده‌های دریافتی را به رویدادهای کیبورد تبدیل می‌کند.
+*   پروتکل ابداعی:
+    *   #R -> فشردن کلیدهای Win + R
+    *   #E -> فشردن کلید Enter
+    *   متن -> تایپ کاراکتر به کاراکتر متن.
 
 ---
 
-## 9. Challenges and Notes ⚡
+## ۴. سناریوی اجرا (Workflow)
 
-- Bit-banged UART required precise timing
-- LED signaling used unconventional channel for data transmission
-- Ensuring reliable clipboard reading in Windows required retries
-- MCU firmware written in C/Assembly required careful memory management
+1.  اتصال: دستگاه (شبیه‌سازی) روشن می‌شود.
+2.  فاز جمع‌آوری اطلاعات:
+    *   میکرو ۵ ثانیه صبر می‌کند.
+    *   پنجره Run باز می‌شود.
+    *   دستور استخراج IP تایپ و اجرا می‌شود.
+    *   پنجره CMD برای لحظه‌ای باز و بسته می‌شود (اطلاعات در فایل متنی مخفی ذخیره شده است).
+    3.  فاز انتظار: میکروکنترلر به حالت آماده‌باش می‌رود.
+4.  فاز نمایش اطلاعات:
+    *   کاربر دکمه روی مدار را فشار می‌دهد.
+    *   میکرو مجدداً پنجره Run را باز می‌کند.
+    *   دستور notepad %TEMP%\temp_ip.txt تایپ می‌شود.
+    *   فایل متنی حاوی IP باز شده و به کاربر نمایش داده می‌شود.
 
 ---
 
-## 10. Conclusion ✅
+## ۵. دستورالعمل گام‌به‌گام اجرا (Execution Guide)
 
-- Successfully simulates a BadUSB HID device without physical hardware
-- Demonstrates microcontroller programming, custom UART protocol, LED signaling, and host automation
-- Safe environment to test data extraction and playback mechanisms
-- Bridges theoretical understanding with practical simulation of hardware attack
+برای اجرای موفقیت‌آمیز این پروژه، مراحل زیر را دقیقاً به ترتیب انجام دهید:
+
+### پیش‌نیازها
+1.  نصب Python (نسخه ۳.۶ به بالا).
+2.  نصب کتابخانه‌های پایتون با دستور زیر در CMD:
+   
+    pip install pyserial pyautogui
+    
+3.  نصب نرم‌افزار Virtual Serial Port Driver (مانند VSPE یا com0com) برای ساخت یک جفت پورت مجازی (مثلاً اتصال COM1 به COM2).
+
+### گام ۱: تنظیم پورت‌های مجازی
+*   نرم‌افزار درایور پورت مجازی را باز کنید.
+*   یک جفت (Pair) جدید بسازید: مثلاً COM1 را به COM2 متصل کنید.
+*   فرض می‌کنیم:
+    *   COM1: به پروتئوس وصل می‌شود.
+    *   COM2: به اسکریپت پایتون وصل می‌شود.
+
+### گام ۲: آماده‌سازی پروتئوس
+1.  فایل پروتئوس را باز کنید.
+2.  روی قطعه COMPIM دابل کلیک کنید.
+    *   Physical Port: روی COM1 تنظیم شود.
+    *   Physical Baud Rate: روی 9600.
+    *   Virtual Baud Rate: روی 9600.
+3.  روی میکروکنترلر ATtiny85 دابل کلیک کنید.
+    *   فایل .hex یا .cof تولید شده توسط CodeVision را بارگذاری کنید.
+    *   Clock Frequency: حتماً روی 8MHz تنظیم شود.
+    *   CKSEL Fuses: روی Int. RC Osc. 8 MHz تنظیم شود.
+
+### گام ۳: اجرای اسکریپت پایتون
+1.  فایل usb_bridge.py را باز کنید.
+2.  خط SERIAL_PORT = 'COM2' را چک کنید (باید مکمل پورتی باشد که در پروتئوس انتخاب کردید).
+3.  اسکریپت را اجرا کنید. باید پیام Listening on COM2... را ببینید.
+
+### گام ۴: اجرای شبیه‌سازی
+1.  دکمه Play در پروتئوس را بزنید.
+2.  صبر کنید: حدود ۳ تا ۵ ثانیه صبر کنید.
+3.  مشاهده فاز ۱: موس و کیبورد را رها کنید. خواهید دید که پنجره Run باز شده و دستوری تایپ می‌شود.
+4.  تست فاز ۲: دکمه موجود در مدار پروتئوس را فشار دهید (کلیک چپ موس روی دکمه و نگه داشتن آن برای نیم ثانیه).
+5.  نتیجه: نوت‌پد باز شده و IP سیستم شما نمایش داده می‌شود.
+
+---
+
+## ۶. عیب‌یابی (Troubleshooting)
+
+*   متن‌های عجیب و غریب تایپ می‌شود:
+    *   علت: تنظیم نبودن فرکانس کلاک میکرو.
+    *   راه حل: مطمئن شوید فیوز بیت‌ها در پروتئوس روی 8MHz تنظیم شده است و در کد delay ها برای 8MHz محاسبه شده‌اند.
+*   هیچ اتفاقی نمی‌افتد:
+    *   علت: عدم ارتباط پورت‌های سریال.
+    *   راه حل: مطمئن شوید پایتون روی پورت درست (مثلاً COM2) گوش می‌دهد و پروتئوس به پورت مقابل (COM1) وصل است.
+*   **خطای Access Denied در پایتون:**
+    *   علت: پورت سریال توسط برنامه دیگری اشغال شده است.
+    *   راه حل: ترمینال پایتون را ببندید و دوباره باز کنید یا پورت‌ها را تغییر دهید.
