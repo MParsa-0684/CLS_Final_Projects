@@ -1085,30 +1085,53 @@ __START_OF_CODE:
 _CMD_RUN:
 	.DB  0x43,0x4D,0x44,0x3A,0x52,0x55,0x4E,0xA
 	.DB  0x0
-_CMD_GET_IP:
-	.DB  0x54,0x59,0x50,0x45,0x3A,0x70,0x6F,0x77
-	.DB  0x65,0x72,0x73,0x68,0x65,0x6C,0x6C,0x20
-	.DB  0x22,0x53,0x65,0x74,0x2D,0x43,0x6C,0x69
-	.DB  0x70,0x62,0x6F,0x61,0x72,0x64,0x20,0x2D
-	.DB  0x56,0x61,0x6C,0x75,0x65,0x20,0x28,0x47
-	.DB  0x65,0x74,0x2D,0x4E,0x65,0x74,0x49,0x50
-	.DB  0x41,0x64,0x64,0x72,0x65,0x73,0x73,0x20
-	.DB  0x2D,0x41,0x64,0x64,0x72,0x65,0x73,0x73
-	.DB  0x46,0x61,0x6D,0x69,0x6C,0x79,0x20,0x49
-	.DB  0x50,0x76,0x34,0x29,0x2E,0x49,0x50,0x41
-	.DB  0x64,0x64,0x72,0x65,0x73,0x73,0x5B,0x30
-	.DB  0x5D,0x22,0xA,0x0
 _KEY_ENTER:
 	.DB  0x4B,0x45,0x59,0x3A,0x45,0x4E,0x54,0x45
 	.DB  0x52,0xA,0x0
-_CMD_ASK_DATA:
-	.DB  0x41,0x43,0x54,0x49,0x4F,0x4E,0x3A,0x47
-	.DB  0x45,0x54,0x5F,0x43,0x4C,0x49,0x50,0xA
-	.DB  0x0
 
 _0x0:
-	.DB  0x54,0x59,0x50,0x45,0x3A,0x6E,0x6F,0x74
-	.DB  0x65,0x70,0x61,0x64,0xA,0x0
+	.DB  0x44,0x45,0x42,0x55,0x47,0x3A,0x20,0x2A
+	.DB  0x2A,0x2A,0x20,0x42,0x4F,0x4F,0x54,0x49
+	.DB  0x4E,0x47,0x20,0x55,0x50,0x20,0x2A,0x2A
+	.DB  0x2A,0xA,0x0,0x44,0x45,0x42,0x55,0x47
+	.DB  0x3A,0x50,0x68,0x61,0x73,0x65,0x20,0x31
+	.DB  0x20,0x2D,0x20,0x47,0x65,0x74,0x74,0x69
+	.DB  0x6E,0x67,0x20,0x49,0x50,0xA,0x0,0x54
+	.DB  0x59,0x50,0x45,0x3A,0x70,0x6F,0x77,0x65
+	.DB  0x72,0x73,0x68,0x65,0x6C,0x6C,0x20,0x22
+	.DB  0x53,0x65,0x74,0x2D,0x43,0x6C,0x69,0x70
+	.DB  0x62,0x6F,0x61,0x72,0x64,0x20,0x2D,0x56
+	.DB  0x61,0x6C,0x75,0x65,0x20,0x28,0x47,0x65
+	.DB  0x74,0x2D,0x4E,0x65,0x74,0x49,0x50,0x41
+	.DB  0x64,0x64,0x72,0x65,0x73,0x73,0x20,0x2D
+	.DB  0x41,0x64,0x64,0x72,0x65,0x73,0x73,0x46
+	.DB  0x61,0x6D,0x69,0x6C,0x79,0x20,0x49,0x50
+	.DB  0x76,0x34,0x29,0x2E,0x49,0x50,0x41,0x64
+	.DB  0x64,0x72,0x65,0x73,0x73,0x5B,0x30,0x5D
+	.DB  0x22,0xA,0x0,0x41,0x43,0x54,0x49,0x4F
+	.DB  0x4E,0x3A,0x47,0x45,0x54,0x5F,0x43,0x4C
+	.DB  0x49,0x50,0xA,0x0,0x44,0x45,0x42,0x55
+	.DB  0x47,0x3A,0x20,0x49,0x50,0x20,0x53,0x61
+	.DB  0x76,0x65,0x64,0x2E,0x20,0x45,0x6E,0x74
+	.DB  0x65,0x72,0x69,0x6E,0x67,0x20,0x50,0x68
+	.DB  0x61,0x73,0x65,0x20,0x32,0x20,0x28,0x4C
+	.DB  0x6F,0x6F,0x70,0x29,0x2E,0xA,0x0,0x44
+	.DB  0x45,0x42,0x55,0x47,0x3A,0x42,0x75,0x74
+	.DB  0x74,0x6F,0x6E,0x20,0x50,0x72,0x65,0x73
+	.DB  0x73,0x65,0x64,0x21,0xA,0x0,0x54,0x59
+	.DB  0x50,0x45,0x3A,0x6E,0x6F,0x74,0x65,0x70
+	.DB  0x61,0x64,0xA,0x0,0x54,0x59,0x50,0x45
+	.DB  0x3A,0x59,0x6F,0x75,0x72,0x20,0x49,0x50
+	.DB  0x20,0x69,0x73,0x3A,0x20,0x0,0x44,0x45
+	.DB  0x42,0x55,0x47,0x3A,0x44,0x6F,0x6E,0x65
+	.DB  0x20,0x54,0x79,0x70,0x69,0x6E,0x67,0x2E
+	.DB  0x20,0x52,0x65,0x6C,0x65,0x61,0x73,0x65
+	.DB  0x20,0x42,0x75,0x74,0x74,0x6F,0x6E,0x2E
+	.DB  0xA,0x0,0x44,0x45,0x42,0x55,0x47,0x3A
+	.DB  0x42,0x75,0x74,0x74,0x6F,0x6E,0x20,0x52
+	.DB  0x65,0x6C,0x65,0x61,0x73,0x65,0x64,0x2E
+	.DB  0x20,0x57,0x61,0x69,0x74,0x69,0x6E,0x67
+	.DB  0x2E,0x2E,0x2E,0xA,0x0
 __RESET:
 	CLI
 	CLR  R30
@@ -1161,7 +1184,7 @@ __CLEAR_SRAM:
 
 	.CSEG
 ;/*******************************************************
-;Project : Real BadUSB Final Fix v2
+;Project : Debugged BadUSB Final
 ;Chip    : ATtiny85
 ;Clock   : 8.000000 MHz
 ;*******************************************************/
@@ -1182,35 +1205,36 @@ __CLEAR_SRAM:
 ;#define TX_DDR DDRB.0
 ;#define RX_PIN PINB.1
 ;#define RX_DDR DDRB.1
+;// ???? ??? ???? 3 ?????? (PB4)
 ;#define BTN_PIN PINB.4
 ;#define BTN_DDR DDRB.4
 ;#define BTN_PORT PORTB.4
 ;
-;#define BIT_DELAY_US 104
-;#define HALF_BIT_DELAY_US 52
+;#define BIT_DELAY_US 208    // ???? 104 ???
+;#define HALF_BIT_DELAY_US 104 // ???? 52 ???
 ;
-;char stolen_data[32];
+;char stolen_data[35]; // ?????? ??? ???? ???? ???????
 ;
 ;void uart_tx(char data) {
-; 0000 0017 void uart_tx(char data) {
+; 0000 0018 void uart_tx(char data) {
 
 	.CSEG
 _uart_tx:
 ; .FSTART _uart_tx
-; 0000 0018     unsigned char i;
-; 0000 0019     TX_PIN = 0; delay_us(BIT_DELAY_US);
+; 0000 0019     unsigned char i;
+; 0000 001A     TX_PIN = 0; delay_us(BIT_DELAY_US);
 	ST   -Y,R26
 	ST   -Y,R17
 ;	data -> Y+1
 ;	i -> R17
 	CBI  0x18,0
 	RCALL SUBOPT_0x0
-; 0000 001A     for (i = 0; i < 8; i++) {
+; 0000 001B     for (i = 0; i < 8; i++) {
 	LDI  R17,LOW(0)
 _0x6:
 	CPI  R17,8
 	BRSH _0x7
-; 0000 001B         if (data & 1) TX_PIN = 1; else TX_PIN = 0;
+; 0000 001C         if (data & 1) TX_PIN = 1; else TX_PIN = 0;
 	LDD  R30,Y+1
 	ANDI R30,LOW(0x1)
 	BREQ _0x8
@@ -1218,29 +1242,29 @@ _0x6:
 	RJMP _0xB
 _0x8:
 	CBI  0x18,0
-; 0000 001C         data >>= 1; delay_us(BIT_DELAY_US);
+; 0000 001D         data >>= 1; delay_us(BIT_DELAY_US);
 _0xB:
 	LDD  R30,Y+1
 	LSR  R30
 	STD  Y+1,R30
 	RCALL SUBOPT_0x0
-; 0000 001D     }
+; 0000 001E     }
 	SUBI R17,-1
 	RJMP _0x6
 _0x7:
-; 0000 001E     TX_PIN = 1; delay_us(BIT_DELAY_US);
+; 0000 001F     TX_PIN = 1; delay_us(BIT_DELAY_US);
 	SBI  0x18,0
 	RCALL SUBOPT_0x0
-; 0000 001F }
+; 0000 0020 }
 	LDD  R17,Y+0
 	RJMP _0x2000002
 ; .FEND
 ;
 ;void uart_print_flash(flash char *str) {
-; 0000 0021 void uart_print_flash(flash char *str) {
+; 0000 0022 void uart_print_flash(flash char *str) {
 _uart_print_flash:
 ; .FSTART _uart_print_flash
-; 0000 0022     while (*str) uart_tx(*str++);
+; 0000 0023     while (*str) uart_tx(*str++);
 	ST   -Y,R27
 	ST   -Y,R26
 ;	*str -> Y+0
@@ -1260,25 +1284,44 @@ _0x10:
 	RCALL _uart_tx
 	RJMP _0x10
 _0x12:
-; 0000 0023 }
+; 0000 0024 }
+	RJMP _0x2000002
+; .FEND
+;
+;void uart_print_ram(char *str) {
+; 0000 0026 void uart_print_ram(char *str) {
+_uart_print_ram:
+; .FSTART _uart_print_ram
+; 0000 0027     while (*str) uart_tx(*str++);
+	ST   -Y,R27
+	ST   -Y,R26
+;	*str -> Y+0
+_0x13:
+	LD   R26,Y
+	LDD  R27,Y+1
+	LD   R30,X
+	CPI  R30,0
+	BREQ _0x15
+	LD   R30,X+
+	ST   Y,R26
+	STD  Y+1,R27
+	MOV  R26,R30
+	RCALL _uart_tx
+	RJMP _0x13
+_0x15:
+; 0000 0028 }
 _0x2000002:
 	ADIW R28,2
 	RET
 ; .FEND
 ;
-;void uart_print_ram(char *str) {
-; 0000 0025 void uart_print_ram(char *str) {
-; 0000 0026     while (*str) uart_tx(*str++);
-;	*str -> Y+0
-; 0000 0027 }
-;
 ;char uart_rx(void) {
-; 0000 0029 char uart_rx(void) {
+; 0000 002A char uart_rx(void) {
 _uart_rx:
 ; .FSTART _uart_rx
-; 0000 002A     unsigned char i;
-; 0000 002B     char data = 0;
-; 0000 002C     while (RX_PIN == 1);
+; 0000 002B     unsigned char i;
+; 0000 002C     char data = 0;
+; 0000 002D     while (RX_PIN == 1);
 	RCALL __SAVELOCR2
 ;	i -> R17
 ;	data -> R16
@@ -1286,99 +1329,115 @@ _uart_rx:
 _0x16:
 	SBIC 0x16,1
 	RJMP _0x16
-; 0000 002D     delay_us(HALF_BIT_DELAY_US);
-	__DELAY_USB 139
-; 0000 002E     if (RX_PIN == 1) return 0;
+; 0000 002E     delay_us(HALF_BIT_DELAY_US);
+	__DELAY_USW 208
+; 0000 002F     if (RX_PIN == 1) return 0;
 	SBIS 0x16,1
 	RJMP _0x19
 	LDI  R30,LOW(0)
 	RJMP _0x2000001
-; 0000 002F     delay_us(BIT_DELAY_US);
+; 0000 0030     delay_us(BIT_DELAY_US);
 _0x19:
 	RCALL SUBOPT_0x0
-; 0000 0030     for (i = 0; i < 8; i++) {
+; 0000 0031     for (i = 0; i < 8; i++) {
 	LDI  R17,LOW(0)
 _0x1B:
 	CPI  R17,8
 	BRSH _0x1C
-; 0000 0031         data >>= 1;
+; 0000 0032         data >>= 1;
 	LSR  R16
-; 0000 0032         if (RX_PIN == 1) data |= 0x80;
+; 0000 0033         if (RX_PIN == 1) data |= 0x80;
 	SBIC 0x16,1
 	ORI  R16,LOW(128)
-; 0000 0033         delay_us(BIT_DELAY_US);
+; 0000 0034         delay_us(BIT_DELAY_US);
 	RCALL SUBOPT_0x0
-; 0000 0034     }
+; 0000 0035     }
 	SUBI R17,-1
 	RJMP _0x1B
 _0x1C:
-; 0000 0035     delay_us(BIT_DELAY_US);
+; 0000 0036     delay_us(BIT_DELAY_US);
 	RCALL SUBOPT_0x0
-; 0000 0036     return data;
+; 0000 0037     return data;
 	MOV  R30,R16
 _0x2000001:
 	LD   R16,Y+
 	LD   R17,Y+
 	RET
-; 0000 0037 }
+; 0000 0038 }
 ; .FEND
 ;
 ;flash char CMD_RUN[] = "CMD:RUN\n";
-;flash char CMD_GET_IP[] = "TYPE:powershell \"Set-Clipboard -Value (Get-NetIPAddress -AddressFamily IPv4).IPAddress[0]\"\ ...
 ;flash char KEY_ENTER[] = "KEY:ENTER\n";
-;flash char CMD_ASK_DATA[] = "ACTION:GET_CLIP\n";
-;flash char HEADER_TEXT[] = "TYPE:Extracted IP: \n";
-;// *** «÷«›Â ‘œÂ: ÅÌ‘Ê‰œ  «ÌÅ ***
-;flash char CMD_TYPE_PREFIX[] = "TYPE:";
 ;
 ;void main(void) {
-; 0000 0041 void main(void) {
+; 0000 003D void main(void) {
 _main:
 ; .FSTART _main
-; 0000 0042     int i;
-; 0000 0043 
-; 0000 0044     TX_DDR = 1; TX_PIN = 1;
+; 0000 003E     int i;
+; 0000 003F 
+; 0000 0040     // 1. ??????? ?????
+; 0000 0041     TX_DDR = 1; TX_PIN = 1;
 ;	i -> R16,R17
 	SBI  0x17,0
 	SBI  0x18,0
-; 0000 0045     RX_DDR = 0;
+; 0000 0042     RX_DDR = 0;
 	CBI  0x17,1
-; 0000 0046     BTN_DDR = 0; BTN_PORT = 1;
+; 0000 0043     BTN_DDR = 0; BTN_PORT = 1; // Pull-up ????? ????
 	CBI  0x17,4
 	SBI  0x18,4
-; 0000 0047 
-; 0000 0048     delay_ms(1000);
+; 0000 0044 
+; 0000 0045     delay_ms(500);
 	RCALL SUBOPT_0x1
+; 0000 0046 
+; 0000 0047     // *** ??? ????: ??? ???? ??? ?? ??? ???? ??? ??? ????? ***
+; 0000 0048     uart_print_flash("DEBUG: *** BOOTING UP ***\n");
+	__POINTW2FN _0x0,0
+	RCALL _uart_print_flash
 ; 0000 0049 
-; 0000 004A     // --- ›«“ 1: Õ„·Â ---
-; 0000 004B     uart_print_flash(CMD_RUN);
-; 0000 004C     delay_ms(500);
-; 0000 004D     uart_print_flash(CMD_GET_IP);
-; 0000 004E     delay_ms(500);
-; 0000 004F     uart_print_flash(KEY_ENTER);
-; 0000 0050     delay_ms(2500);
-	LDI  R26,LOW(2500)
-	LDI  R27,HIGH(2500)
+; 0000 004A     // --- ??? 1: ?????? ????? ---
+; 0000 004B     uart_print_flash("DEBUG:Phase 1 - Getting IP\n");
+	__POINTW2FN _0x0,27
 	RCALL SUBOPT_0x2
-; 0000 0051 
-; 0000 0052     uart_print_flash(CMD_ASK_DATA);
+; 0000 004C 
+; 0000 004D     uart_print_flash(CMD_RUN);
+; 0000 004E     delay_ms(500);
+; 0000 004F     // ????? ??????
+; 0000 0050     uart_print_flash("TYPE:powershell \"Set-Clipboard -Value (Get-NetIPAddress -AddressFamily IPv4).IPAddress[0]\"\n");
+	__POINTW2FN _0x0,55
+	RCALL _uart_print_flash
+; 0000 0051     delay_ms(500);
+	RCALL SUBOPT_0x1
+; 0000 0052     uart_print_flash(KEY_ENTER);
+	LDI  R26,LOW(_KEY_ENTER*2)
+	LDI  R27,HIGH(_KEY_ENTER*2)
+	RCALL _uart_print_flash
 ; 0000 0053 
-; 0000 0054     for(i=0; i<32; i++) stolen_data[i] = 0;
+; 0000 0054     delay_ms(3000); // ??? ???? ????? ??????
+	LDI  R26,LOW(3000)
+	LDI  R27,HIGH(3000)
+	RCALL _delay_ms
+; 0000 0055 
+; 0000 0056     uart_print_flash("ACTION:GET_CLIP\n");
+	__POINTW2FN _0x0,147
+	RCALL _uart_print_flash
+; 0000 0057 
+; 0000 0058     // ??????? ????
+; 0000 0059     for(i=0; i<35; i++) stolen_data[i] = 0;
 	__GETWRN 16,17,0
 _0x29:
-	__CPWRN 16,17,32
+	__CPWRN 16,17,35
 	BRGE _0x2A
 	RCALL SUBOPT_0x3
 	__ADDWRN 16,17,1
 	RJMP _0x29
 _0x2A:
-; 0000 0056 for(i=0; i<30; i++) {
+; 0000 005C for(i=0; i<30; i++) {
 	__GETWRN 16,17,0
 _0x2C:
 	__CPWRN 16,17,30
 	BRGE _0x2D
-; 0000 0057         char c = uart_rx();
-; 0000 0058         if(c == '\n' || c == '\r') {
+; 0000 005D         char c = uart_rx();
+; 0000 005E         if(c == '\n' || c == '\r') {
 	SBIW R28,1
 ;	c -> Y+0
 	RCALL _uart_rx
@@ -1389,129 +1448,136 @@ _0x2C:
 	CPI  R26,LOW(0xD)
 	BRNE _0x2E
 _0x2F:
-; 0000 0059             stolen_data[i] = 0;
+; 0000 005F             stolen_data[i] = 0;
 	RCALL SUBOPT_0x3
-; 0000 005A             break;
+; 0000 0060             break;
 	ADIW R28,1
 	RJMP _0x2D
-; 0000 005B         }
-; 0000 005C         stolen_data[i] = c;
+; 0000 0061         }
+; 0000 0062         stolen_data[i] = c;
 _0x2E:
 	MOVW R30,R16
 	SUBI R30,LOW(-_stolen_data)
 	SBCI R31,HIGH(-_stolen_data)
 	LD   R26,Y
 	STD  Z+0,R26
-; 0000 005D     }
+; 0000 0063     }
 	ADIW R28,1
 	__ADDWRN 16,17,1
 	RJMP _0x2C
 _0x2D:
-; 0000 005E 
-; 0000 005F     // --- ›«“ 2: œò„Â ---
-; 0000 0060     while (1) {
+; 0000 0064 
+; 0000 0065     uart_print_flash("DEBUG: IP Saved. Entering Phase 2 (Loop).\n");
+	__POINTW2FN _0x0,164
+	RCALL _uart_print_flash
+; 0000 0066 
+; 0000 0067     // --- ??? 2: ???? ?? ???? ???? ---
+; 0000 0068     while (1) {
 _0x31:
-; 0000 0061         if (BTN_PIN == 0) {
+; 0000 0069         // ?? ???? ???? (Active Low)
+; 0000 006A         if (BTN_PIN == 0) {
 	SBIC 0x16,4
 	RJMP _0x34
-; 0000 0062             delay_ms(50);
+; 0000 006B             delay_ms(50); // ?????? ?????
 	LDI  R26,LOW(50)
 	LDI  R27,0
 	RCALL _delay_ms
-; 0000 0063             if (BTN_PIN == 0) {
+; 0000 006C             if (BTN_PIN == 0) {
 	SBIC 0x16,4
 	RJMP _0x35
-; 0000 0064                 // »«“ ò—œ‰ ‰Ê  Åœ
-; 0000 0065                 uart_print_flash(CMD_RUN);
-	LDI  R26,LOW(_CMD_RUN*2)
-	LDI  R27,HIGH(_CMD_RUN*2)
+; 0000 006D                 // ???? ????? ??
+; 0000 006E                 uart_print_flash("DEBUG:Button Pressed!\n");
+	__POINTW2FN _0x0,207
+	RCALL SUBOPT_0x2
+; 0000 006F 
+; 0000 0070                 // ??? ???? Notepad
+; 0000 0071                 uart_print_flash(CMD_RUN);
+; 0000 0072                 delay_ms(500);
+; 0000 0073                 uart_print_flash("TYPE:notepad\n");
+	__POINTW2FN _0x0,230
 	RCALL _uart_print_flash
-; 0000 0066                 delay_ms(500);
-	LDI  R26,LOW(500)
-	LDI  R27,HIGH(500)
-	RCALL _delay_ms
-; 0000 0067                 uart_print_flash("TYPE:notepad\n");
-	__POINTW2FN _0x0,0
-	RCALL _uart_print_flash
-; 0000 0068                 delay_ms(100);
+; 0000 0074                 delay_ms(100);
 	LDI  R26,LOW(100)
 	LDI  R27,0
 	RCALL _delay_ms
-; 0000 0069                 uart_print_flash(KEY_ENTER);
+; 0000 0075                 uart_print_flash(KEY_ENTER);
 	LDI  R26,LOW(_KEY_ENTER*2)
 	LDI  R27,HIGH(_KEY_ENTER*2)
 	RCALL _uart_print_flash
-; 0000 006A                 delay_ms(1000);
-	RCALL SUBOPT_0x1
-; 0000 006B 
-; 0000 006C                     // --- ›«“ 1: Õ„·Â ---
-; 0000 006D     uart_print_flash(CMD_RUN);
-; 0000 006E     delay_ms(500);
-; 0000 006F     uart_print_flash(CMD_GET_IP);
-; 0000 0070     delay_ms(500);
-; 0000 0071     uart_print_flash(KEY_ENTER);
-; 0000 0072 
-; 0000 0073     // ***  €ÌÌ— „Â„: «›“«Ì‘ “„«‰ ’»— »Â 5 À«‰ÌÂ ***
-; 0000 0074     // «Ì‰ »Â Å«Ê—‘· «Ã«“Â „ÌœÂœ ò«„· ·Êœ ‘Êœ Ê œ” Ê— —« «Ã—« ò‰œ
-; 0000 0075     delay_ms(5000);
-	LDI  R26,LOW(5000)
-	LDI  R27,HIGH(5000)
-	RCALL SUBOPT_0x2
 ; 0000 0076 
-; 0000 0077     uart_print_flash(CMD_ASK_DATA);
+; 0000 0077                 delay_ms(1000); // ??? ???? ??? ??? ??? ??
+	LDI  R26,LOW(1000)
+	LDI  R27,HIGH(1000)
+	RCALL _delay_ms
 ; 0000 0078 
-; 0000 0079                 while (BTN_PIN == 0);
+; 0000 0079                 // ???? ????? ????? ???
+; 0000 007A                 uart_print_flash("TYPE:Your IP is: ");
+	__POINTW2FN _0x0,244
+	RCALL _uart_print_flash
+; 0000 007B                 uart_print_ram(stolen_data);
+	LDI  R26,LOW(_stolen_data)
+	LDI  R27,HIGH(_stolen_data)
+	RCALL _uart_print_ram
+; 0000 007C                 uart_print_flash("\n");
+	__POINTW2FN _0x0,25
+	RCALL _uart_print_flash
+; 0000 007D 
+; 0000 007E                 uart_print_flash("DEBUG:Done Typing. Release Button.\n");
+	__POINTW2FN _0x0,262
+	RCALL _uart_print_flash
+; 0000 007F 
+; 0000 0080                 // ?? ????? ?? ??? ??? ???? ??? ?????? ???? (??????? ?? ?????)
+; 0000 0081                 while(BTN_PIN == 0) {
 _0x36:
-	SBIS 0x16,4
+	SBIC 0x16,4
+	RJMP _0x38
+; 0000 0082                     delay_ms(10);
+	LDI  R26,LOW(10)
+	LDI  R27,0
+	RCALL _delay_ms
+; 0000 0083                 }
 	RJMP _0x36
-; 0000 007A             }
-; 0000 007B         }
+_0x38:
+; 0000 0084 
+; 0000 0085                 uart_print_flash("DEBUG:Button Released. Waiting...\n");
+	__POINTW2FN _0x0,298
+	RCALL _uart_print_flash
+; 0000 0086                 delay_ms(500);
+	RCALL SUBOPT_0x1
+; 0000 0087             }
+; 0000 0088         }
 _0x35:
-; 0000 007C     }
+; 0000 0089     }
 _0x34:
 	RJMP _0x31
-; 0000 007D }
+; 0000 008A }
 _0x39:
 	RJMP _0x39
 ; .FEND
 
 	.DSEG
 _stolen_data:
-	.BYTE 0x20
+	.BYTE 0x23
 
 	.CSEG
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:13 WORDS
 SUBOPT_0x0:
-	__DELAY_USW 208
+	__DELAY_USW 416
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:15 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:6 WORDS
 SUBOPT_0x1:
-	LDI  R26,LOW(1000)
-	LDI  R27,HIGH(1000)
-	RCALL _delay_ms
+	LDI  R26,LOW(500)
+	LDI  R27,HIGH(500)
+	RJMP _delay_ms
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+SUBOPT_0x2:
+	RCALL _uart_print_flash
 	LDI  R26,LOW(_CMD_RUN*2)
 	LDI  R27,HIGH(_CMD_RUN*2)
 	RCALL _uart_print_flash
-	LDI  R26,LOW(500)
-	LDI  R27,HIGH(500)
-	RCALL _delay_ms
-	LDI  R26,LOW(_CMD_GET_IP*2)
-	LDI  R27,HIGH(_CMD_GET_IP*2)
-	RCALL _uart_print_flash
-	LDI  R26,LOW(500)
-	LDI  R27,HIGH(500)
-	RCALL _delay_ms
-	LDI  R26,LOW(_KEY_ENTER*2)
-	LDI  R27,HIGH(_KEY_ENTER*2)
-	RJMP _uart_print_flash
-
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0x2:
-	RCALL _delay_ms
-	LDI  R26,LOW(_CMD_ASK_DATA*2)
-	LDI  R27,HIGH(_CMD_ASK_DATA*2)
-	RJMP _uart_print_flash
+	RJMP SUBOPT_0x1
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
 SUBOPT_0x3:

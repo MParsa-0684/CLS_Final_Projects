@@ -1,0 +1,21 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+stolen_data                                                                       0x00E0      35
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+uart_tx                                                                           0x000DC     23
+uart_print_flash                                                                  0x000F3     17
+uart_print_ram                                                                    0x00104     15
+uart_rx                                                                           0x00113     27
+main                                                                              0x0012E    110

