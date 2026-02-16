@@ -35,6 +35,7 @@ def run_sim(hex_lines: List[str]) -> List[int]:
         memory[idx] = val & 0xFFFFFFFF
         idx += 1
 
+    # PC loop - fetch, decode, execute
     while True:
         word_index = pc // WORD_SIZE
         if word_index >= MEM_WORDS:
@@ -46,6 +47,7 @@ def run_sim(hex_lines: List[str]) -> List[int]:
 
         pc += WORD_SIZE
 
+        # Decode instruction fields
         opcode = (instr >> 26) & 0x3F
         rs = (instr >> 21) & 0x1F
         rt = (instr >> 16) & 0x1F
@@ -55,6 +57,7 @@ def run_sim(hex_lines: List[str]) -> List[int]:
         simm = imm if imm < 0x8000 else imm - 0x10000
         addr = instr & 0x03FFFFFF
 
+        # Execute instruction
         if opcode == 0x00:
             if funct == 0x20:
                 regs[rd] = (regs[rs] + regs[rt]) & 0xFFFFFFFF
