@@ -5,6 +5,7 @@
 زبان برنامه‌نویسی: C (CodeVisionAVR) و Python
 محیط شبیه‌سازی: Proteus Design Suite
 
+
 ---
 
 ## ۱. مقدمه و اهداف
